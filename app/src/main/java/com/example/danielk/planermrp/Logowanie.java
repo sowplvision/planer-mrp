@@ -32,6 +32,6 @@ public class Logowanie extends AppCompatActivity {
         String uPassword = password.getText().toString();
 
         ObslugaBazyDanych obslugaBazyDanych = new ObslugaBazyDanych(this);
-        obslugaBazyDanych.execute(uLogin, uPassword);
+        obslugaBazyDanych.execute("login",uLogin,uPassword);
     }
 }
