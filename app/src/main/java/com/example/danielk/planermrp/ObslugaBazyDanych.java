@@ -1,9 +1,9 @@
 package com.example.danielk.planermrp;
 
-import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
-
+import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -23,7 +23,6 @@ import java.net.URLEncoder;
 
 public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
     private Context context;
-    private AlertDialog dialog;
     private String operationType;
 
     public ObslugaBazyDanych(Context context){
@@ -89,17 +88,22 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPreExecute() {
-        //utworzenie pustego dialogu
-        dialog = new AlertDialog.Builder(context).create();
+        super.onPreExecute();
     }
 
     @Override
     protected void onPostExecute(String result) {
         if(operationType.equals("login")) {
-            //wyswietlenie odpowiedzi serwera w formie dialogu
-            dialog.setTitle("Status logowania");
-            dialog.setMessage(result);
-            dialog.show();
+            //wyswietlenie odpowiedzi serwera
+            if(result.equals("Logowanie powiodło sie.")){
+                Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(context, PanelGlowny.class);
+                context.startActivity(intent);
+            }
+            else {
+                Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
