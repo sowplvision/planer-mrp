@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.EditText;
 
 public class Logowanie extends AppCompatActivity {
-
     private EditText user;
     private EditText password;
 
@@ -15,22 +14,18 @@ public class Logowanie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logowanie);
 
+        //przypisanie pol do zmiennych
         user = (EditText) findViewById(R.id.login);
         password = (EditText) findViewById(R.id.haslo);
     }
 
     protected void zaloguj(View view){
-        /*TODO Obsługa przycisku zaloguj:
 
-        * czy użytkownik istnieje
-        * czy zapamietac dane w preferencjach jezeli nie zapamietane
-        * logowanie do bazy
-        Ewentualnie pobieranie z bazy jakis rzeczy ktore sa tylko dla tego uzytkownika
-         */
-
+        //pobranie danych z pol po probie zalogowania
         String uLogin = user.getText().toString();
         String uPassword = password.getText().toString();
 
+        //przeslanie danych do protokolu i proba nawiazania polaczenia
         ObslugaBazyDanych obslugaBazyDanych = new ObslugaBazyDanych(this);
         obslugaBazyDanych.execute("login",uLogin,uPassword);
     }
