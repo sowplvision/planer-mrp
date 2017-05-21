@@ -19,7 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PanelGlowny"></activity>
+        <activity android:name=".PanelGlowny" />
+        <activity android:name=".TworzeniePlanu" />
+        <activity android:name=".Informacje" />
+        <activity android:name=".WpisDoBazy"></activity>
     </application>
 
 </manifest>

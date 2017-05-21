@@ -3,4 +3,10 @@
     <string name="login">Login</string>
     <string name="haslo">Hasło</string>
     <string name="zaloguj">Zaloguj</string>
+    <string name="logowanie_label">Wpisz swoje dane logowania:</string>
+    <string name="stworz_plan">1.Stwórz nowy plan</string>
+    <string name="wpis_do_bazy">2.Dodaj nowy wpis do bazy danych</string>
+    <string name="informacje">3.Informacje o programie</string>
+    <string name="powitanie">Witaj!</string>
+    <string name="ekran_glowny">Co chciałbyś zrobić:</string>
 </resources>

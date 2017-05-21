@@ -19,7 +19,7 @@ public class Logowanie extends AppCompatActivity {
         password = (EditText) findViewById(R.id.haslo);
     }
 
-    protected void zaloguj(View view){
+    public void zaloguj(View view){
 
         //pobranie danych z pol po probie zalogowania
         String uLogin = user.getText().toString();

@@ -13,6 +13,13 @@
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp">
 
+        <TextView
+            android:id="@+id/logowanieLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/logowanie_label"
+            android:textSize="24sp" />
+
         <EditText
             android:id="@+id/login"
             android:layout_width="match_parent"
@@ -37,4 +44,5 @@
             android:onClick="zaloguj"
             android:text="@string/zaloguj" />
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

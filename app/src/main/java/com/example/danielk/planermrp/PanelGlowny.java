@@ -1,5 +1,6 @@
 package com.example.danielk.planermrp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,15 +13,18 @@ public class PanelGlowny extends AppCompatActivity {
         setContentView(R.layout.activity_panel_glowny);
     }
 
-    protected void stworzPlan(View view){
-        //TODO
+    public void stworzPlan(View view){
+        Intent intent = new Intent(this,TworzeniePlanu.class);
+        startActivity(intent);
     }
 
-    protected void wpisDoBazy(View view){
-        //TODO
+    public void wpisDoBazy(View view){
+        Intent intent = new Intent(this,WpisDoBazy.class);
+        startActivity(intent);
     }
 
-    protected void informacje(View view){
-        //TODO
+    public void informacje(View view){
+        Intent intent = new Intent(this, Informacje.class);
+        startActivity(intent);
     }
 }

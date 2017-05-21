@@ -13,26 +13,40 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
+        <TextView
+            android:id="@+id/welcomeLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/powitanie"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/mainScreenLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ekran_glowny"
+            android:textSize="16sp" />
+
         <Button
             android:id="@+id/stworzPlan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="stworzPlan"
-            android:text="1.Stwórz nowy plan" />
+            android:text="@string/stworz_plan" />
 
         <Button
             android:id="@+id/wpisDoBazy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="wpisDoBazy"
-            android:text="2.Dodaj nowy wpis do bazy danych" />
+            android:text="@string/wpis_do_bazy" />
 
         <Button
             android:id="@+id/informacje"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="informacje"
-            android:text="3.Informacje o programie" />
+            android:text="@string/informacje" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
