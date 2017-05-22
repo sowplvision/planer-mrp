@@ -45,7 +45,7 @@ public class Logowanie extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.login_settings:
                 Intent intent = new Intent(this, PreferencjeLogowania.class);
-                startActivity(intent);
+               // startActivity(intent);
                 break;
         }
         return true;
