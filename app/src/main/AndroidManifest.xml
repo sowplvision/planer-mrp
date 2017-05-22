@@ -22,7 +22,8 @@
         <activity android:name=".PanelGlowny" />
         <activity android:name=".TworzeniePlanu" />
         <activity android:name=".Informacje" />
-        <activity android:name=".WpisDoBazy"></activity>
+        <activity android:name=".WpisDoBazy" />
+        <activity android:name=".PreferencjeLogowania"></activity>
     </application>
 
 </manifest>

@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class Logowanie extends AppCompatActivity {
     private EditText user;
@@ -45,7 +44,7 @@ public class Logowanie extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.login_settings:
                 Intent intent = new Intent(this, PreferencjeLogowania.class);
-               // startActivity(intent);
+                startActivity(intent);
                 break;
         }
         return true;
