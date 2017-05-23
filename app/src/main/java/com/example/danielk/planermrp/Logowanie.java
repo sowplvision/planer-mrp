@@ -23,13 +23,17 @@ public class Logowanie extends AppCompatActivity {
         user = (EditText) findViewById(R.id.login);
         password = (EditText) findViewById(R.id.haslo);
 
+        //odczytywanie preferencji
         SharedPreferences sharedPreferences = getSharedPreferences("daneLogowania",Context.MODE_PRIVATE);
+        boolean zapisz = sharedPreferences.getBoolean("zapisz",true);
 
-        String uLogin = sharedPreferences.getString("login","");
-        String uPassword = sharedPreferences.getString("haslo","");
+        if(zapisz) { //auto wypełnianie pól
+            String uLogin = sharedPreferences.getString("login", "");
+            String uPassword = sharedPreferences.getString("haslo", "");
 
-        user.setText(uLogin);
-        password.setText(uPassword);
+            user.setText(uLogin);
+            password.setText(uPassword);
+        }
     }
 
     public void zaloguj(View view){
@@ -38,13 +42,18 @@ public class Logowanie extends AppCompatActivity {
         String uLogin = user.getText().toString();
         String uPassword = password.getText().toString();
 
+        //zapisywanie preferencji
         SharedPreferences sharedPreferences = getSharedPreferences("daneLogowania", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        boolean zapisz = sharedPreferences.getBoolean("zapisz",true);
 
-        editor.putString("login",uLogin);
-        editor.putString("haslo",uPassword);
+        if(zapisz) { // jeżeli użytkownik chce zapamiętywać swoje dane logowania
+            SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.apply();
+            editor.putString("login", uLogin);
+            editor.putString("haslo", uPassword);
+
+            editor.apply();
+        }
 
         //przeslanie danych do protokolu i proba nawiazania polaczenia
         ObslugaBazyDanych obslugaBazyDanych = new ObslugaBazyDanych(this);

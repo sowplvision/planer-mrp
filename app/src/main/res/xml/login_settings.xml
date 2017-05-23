@@ -3,7 +3,7 @@
     <PreferenceCategory android:title="Ustawienia logowania">
         <CheckBoxPreference android:key="pref_zapisz"
             android:title="Zapamiętuj dane logowania"
-            android:summary="Zapamiętuj login i hasło użytkownika po ostatnim zalogowaniu"
+            android:summary="Wypełnij pola login i hasło danymi użytkownika zapamiętanymi po ostatnim logowaniu"
             android:defaultValue="true"/>
     </PreferenceCategory>
 </PreferenceScreen>
