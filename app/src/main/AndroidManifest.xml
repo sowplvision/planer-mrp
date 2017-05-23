@@ -23,7 +23,8 @@
         <activity android:name=".TworzeniePlanu" />
         <activity android:name=".Informacje" />
         <activity android:name=".WpisDoBazy" />
-        <activity android:name=".PreferencjeLogowania"></activity>
+        <activity android:name=".PreferencjeLogowania" />
+        <activity android:name=".Preferencje"></activity>
     </application>
 
 </manifest>

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="Ustawienia logowania">
-        <CheckBoxPreference
-            android:key="pref_save"
+    <PreferenceCategory android:title="Ustawienia ogólne">
+        <CheckBoxPreference android:key="pref1"
+            android:title="Zapamiętuj dane logowania"
+            android:summary="Zapamiętuj login i hasło użytkownika po ostatnim zalogowaniu"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Inne">
+        <CheckBoxPreference android:key="pref2"
             android:title="Zapamiętuj dane logowania"
             android:summary="Zapamiętuj login i hasło użytkownika po ostatnim zalogowaniu"
             android:defaultValue="true"/>

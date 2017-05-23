@@ -6,27 +6,27 @@ import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class PreferencjeLogowania extends AppCompatActivity{
+public class Preferencje extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_preferencje_logowania);
+        setContentView(R.layout.activity_preferencje);
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        DaneLogowania daneLogowania = new DaneLogowania();
-        fragmentTransaction.add(android.R.id.content, daneLogowania, "settings");
+        Ustawienia ustawienia = new Ustawienia();
+        fragmentTransaction.add(android.R.id.content, ustawienia, "settings");
         fragmentTransaction.commit();
     }
 
-    public static class DaneLogowania extends PreferenceFragment {
+    public static class Ustawienia extends PreferenceFragment {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            addPreferencesFromResource(R.xml.login_settings);
+            addPreferencesFromResource(R.xml.settings);
         }
     }
 }
