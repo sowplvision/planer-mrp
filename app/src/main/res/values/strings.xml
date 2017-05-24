@@ -4,9 +4,10 @@
     <string name="haslo">Hasło</string>
     <string name="zaloguj">Zaloguj</string>
     <string name="logowanie_label">Wpisz swoje dane logowania:</string>
-    <string name="stworz_plan">1.Stwórz nowy plan</string>
-    <string name="wpis_do_bazy">2.Dodaj nowy wpis do bazy danych</string>
-    <string name="informacje">3.Informacje o programie</string>
+    <string name="stworz_plan">Zaprojektuj nowy plan produkcji wybranego produktu</string>
+    <string name="wpis_do_bazy">Dodaj nowy materiał, półprodukt, produkt do bazy danych</string>
+    <string name="informacje">Informacje o programie</string>
     <string name="powitanie">Witaj!</string>
     <string name="ekran_glowny">Co chciałbyś zrobić:</string>
+    <string name="typ_produktu_label">Wybierz typ produktu:</string>
 </resources>
