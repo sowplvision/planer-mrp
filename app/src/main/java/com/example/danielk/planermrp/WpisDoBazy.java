@@ -1,19 +1,19 @@
 package com.example.danielk.planermrp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListener {
+    private LinearLayout material, polprodukt, produkt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,10 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
 
         typProduktu.setAdapter(adapter);
         typProduktu.setOnItemSelectedListener(this);
+
+        material = (LinearLayout) findViewById(R.id.material);
+        polprodukt = (LinearLayout) findViewById(R.id.polprodukt);
+        produkt = (LinearLayout) findViewById(R.id.produkt);
     }
 
     @Override
@@ -34,13 +38,19 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
         String typProduktu = parent.getItemAtPosition(position).toString();
 
         if(typProduktu.equals("Materiał")){
-
+            material.setVisibility(View.VISIBLE);
+            polprodukt.setVisibility(View.GONE);
+            produkt.setVisibility(View.GONE);
         }
         if(typProduktu.equals("Półprodukt")){
-
+            material.setVisibility(View.GONE);
+            polprodukt.setVisibility(View.VISIBLE);
+            produkt.setVisibility(View.GONE);
         }
         if(typProduktu.equals("Produkt")){
-
+            material.setVisibility(View.GONE);
+            polprodukt.setVisibility(View.GONE);
+            produkt.setVisibility(View.VISIBLE);
         }
     }
 

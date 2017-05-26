@@ -9,5 +9,5 @@
     <string name="informacje">Informacje o programie</string>
     <string name="powitanie">Witaj!</string>
     <string name="ekran_glowny">Co chciałbyś zrobić:</string>
-    <string name="typ_produktu_label">Wybierz typ produktu:</string>
+    <string name="typ_produktu_label">Typ produktu:</string>
 </resources>

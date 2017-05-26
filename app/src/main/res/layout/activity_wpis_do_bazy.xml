@@ -6,37 +6,196 @@
     android:layout_height="match_parent"
     tools:context="com.example.danielk.planermrp.WpisDoBazy">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TableRow
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:stretchColumns="0">
 
-                <TextView
-                    android:id="@+id/wpisDoBazyLabel"
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/wpisDoBazyLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="@string/typ_produktu_label"
+                        android:textSize="18sp" />
+
+                    <Spinner
+                        android:id="@+id/typProduktu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_weight="0" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/material"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/nazwa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/typ_produktu_label"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="Nazwa"
+                    android:inputType="textPersonName"
                     android:textSize="18sp" />
 
-                <Spinner
-                    android:id="@+id/typProduktu"
+                <EditText
+                    android:id="@+id/opis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:hint="Opis, zastosowania, dodatkowe informacje"
+                    android:inputType="textMultiLine"
+                    android:lines="4"
+                    android:textSize="18sp" />
 
-            </TableRow>
+                <EditText
+                    android:id="@+id/czas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="Czas montażu"
+                    android:inputType="number"
+                    android:textSize="18sp" />
 
-        </TableLayout>
+                <EditText
+                    android:id="@+id/ilosc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="Ilość dostępna w magazynie"
+                    android:inputType="number"
+                    android:textSize="18sp" />
 
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/partia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="Wielkość produkowanej partii"
+                    android:inputType="number"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/cena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="Cena za jedną sztukę"
+                    android:inputType="numberDecimal"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/wyslij"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_weight="0"
+                    android:text="Dodaj wpis" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/polprodukt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/nazwa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="Nazwa"
+                    android:inputType="textPersonName"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/opis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:hint="Opis, zastosowania, dodatkowe informacje"
+                    android:inputType="textMultiLine"
+                    android:lines="4"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/wyslij"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_weight="0"
+                    android:text="Dodaj wpis" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/produkt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/nazwa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="Nazwa"
+                    android:inputType="textPersonName"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/wyslij"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_weight="0"
+                    android:text="Dodaj wpis" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
