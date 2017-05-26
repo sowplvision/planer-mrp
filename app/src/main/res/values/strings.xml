@@ -10,4 +10,10 @@
     <string name="powitanie">Witaj!</string>
     <string name="ekran_glowny">Co chciałbyś zrobić:</string>
     <string name="typ_produktu_label">Typ produktu:</string>
+    <string name="opis_zastosowania_dodatkowe_informacje">Opis, zastosowania, dodatkowe informacje</string>
+    <string name="czas_montazu">Czas montażu</string>
+    <string name="dostepne_w_magazynie">Ilość dostępna w magazynie</string>
+    <string name="wielkosc_partii">Wielkość produkowanej partii</string>
+    <string name="cena">Cena za jedną sztukę</string>
+    <string name="dodaj_wpis">Dodaj wpis</string>
 </resources>

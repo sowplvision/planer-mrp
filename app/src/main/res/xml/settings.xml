@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="Kategoria1">
-        <CheckBoxPreference android:key="pref1"
-            android:title="Opcje1"
-            android:summary="TODO"
-            android:defaultValue="true"/>
-    </PreferenceCategory>
-    <PreferenceCategory android:title="Kategoria2">
-        <CheckBoxPreference android:key="pref2"
-            android:title="Opcje2"
-            android:summary="TODO"
-            android:defaultValue="true"/>
+    <PreferenceCategory android:title="Dane logowania">
+        <EditTextPreference android:key="pref_login"
+            android:title="Login"
+            android:summary="Zapamiętany login do bazy danych" />
+        <EditTextPreference android:key="pref_haslo"
+            android:title="Hasło"
+            android:summary="Zapamiętane hasło do bazy danych" />
+        <CheckBoxPreference android:key="pref_zapisz"
+            android:title="Zapamiętuj dane logowania"
+            android:summary="Wypełnij pola login i hasło danymi użytkownika oraz zapamiętuj dane ostatniego logowania"/>
     </PreferenceCategory>
 </PreferenceScreen>

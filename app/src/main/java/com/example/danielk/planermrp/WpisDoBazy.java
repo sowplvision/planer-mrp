@@ -9,11 +9,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListener {
     private LinearLayout material, polprodukt, produkt;
+    private EditText nazwa, opis, czas, ilosc, partia, cena;
+    private Button wyslij;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +45,37 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
             material.setVisibility(View.VISIBLE);
             polprodukt.setVisibility(View.GONE);
             produkt.setVisibility(View.GONE);
+
+            nazwa = (EditText) findViewById(R.id.nazwaMaterialu);
+            opis = (EditText) findViewById(R.id.opisMaterialu);
+            czas = (EditText) findViewById(R.id.czas);
+            ilosc = (EditText) findViewById(R.id.ilosc);
+            partia = (EditText) findViewById(R.id.partia);
+            cena = (EditText) findViewById(R.id.cena);
+            wyslij = (Button) findViewById(R.id.wyslijMaterial);
+
+            nazwa.setHint("Nazwa materiału");
         }
         if(typProduktu.equals("Półprodukt")){
             material.setVisibility(View.GONE);
             polprodukt.setVisibility(View.VISIBLE);
             produkt.setVisibility(View.GONE);
+
+            nazwa = (EditText) findViewById(R.id.nazwaPolproduktu);
+            opis = (EditText) findViewById(R.id.opisPolproduktu);
+            wyslij = (Button) findViewById(R.id.wyslijPolprodukt);
+
+            nazwa.setHint("Nazwa półproduktu");
         }
         if(typProduktu.equals("Produkt")){
             material.setVisibility(View.GONE);
             polprodukt.setVisibility(View.GONE);
             produkt.setVisibility(View.VISIBLE);
+
+            nazwa = (EditText) findViewById(R.id.nazwaProduktu);
+            wyslij = (Button) findViewById(R.id.wyslijProdukt);
+
+            nazwa.setHint("Nazwa produktu");
         }
     }
 
@@ -76,5 +101,6 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
         return true;
     }
 
-
+    public void wyslij(View view) {
+    }
 }

@@ -26,21 +26,26 @@ public class PreferencjeLogowania extends AppCompatActivity{
     }
 
     public static class DaneLogowania extends PreferenceFragment {
+        private SharedPreferences daneLogowania;
+        private CheckBoxPreference zapisz;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
             addPreferencesFromResource(R.xml.login_settings);
+
+            zapisz = (CheckBoxPreference) findPreference("pref_zapisz");
+
+            daneLogowania = getActivity().getSharedPreferences("daneLogowania", Context.MODE_PRIVATE);
+
+            zapisz.setChecked(daneLogowania.getBoolean("zapisz",true));
         }
 
         @Override
         public void onStop() {
             super.onStop();
-            CheckBoxPreference zapisz = (CheckBoxPreference) findPreference("pref_zapisz");
-
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("daneLogowania", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
+            SharedPreferences.Editor editor = daneLogowania.edit();
 
             editor.putBoolean("zapisz",zapisz.isChecked());
             editor.apply();

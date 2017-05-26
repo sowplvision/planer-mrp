@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -59,23 +58,21 @@
                 android:visibility="gone">
 
                 <EditText
-                    android:id="@+id/nazwa"
+                    android:id="@+id/nazwaMaterialu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
                     android:ems="10"
-                    android:hint="Nazwa"
                     android:inputType="textPersonName"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/opis"
+                    android:id="@+id/opisMaterialu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:ems="10"
                     android:gravity="top"
-                    android:hint="Opis, zastosowania, dodatkowe informacje"
+                    android:hint="@string/opis_zastosowania_dodatkowe_informacje"
                     android:inputType="textMultiLine"
                     android:lines="4"
                     android:textSize="18sp" />
@@ -86,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:ems="10"
-                    android:hint="Czas montażu"
+                    android:hint="@string/czas_montazu"
                     android:inputType="number"
                     android:textSize="18sp" />
 
@@ -96,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:ems="10"
-                    android:hint="Ilość dostępna w magazynie"
+                    android:hint="@string/dostepne_w_magazynie"
                     android:inputType="number"
                     android:textSize="18sp" />
 
@@ -106,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:ems="10"
-                    android:hint="Wielkość produkowanej partii"
+                    android:hint="@string/wielkosc_partii"
                     android:inputType="number"
                     android:textSize="18sp" />
 
@@ -116,17 +113,18 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:ems="10"
-                    android:hint="Cena za jedną sztukę"
+                    android:hint="@string/cena"
                     android:inputType="numberDecimal"
                     android:textSize="18sp" />
 
                 <Button
-                    android:id="@+id/wyslij"
+                    android:id="@+id/wyslijMaterial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_weight="0"
-                    android:text="Dodaj wpis" />
+                    android:onClick="wyslij"
+                    android:text="@string/dodaj_wpis" />
             </LinearLayout>
 
             <LinearLayout
@@ -138,34 +136,31 @@
                 android:visibility="gone">
 
                 <EditText
-                    android:id="@+id/nazwa"
+                    android:id="@+id/nazwaPolproduktu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
                     android:ems="10"
-                    android:hint="Nazwa"
                     android:inputType="textPersonName"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/opis"
+                    android:id="@+id/opisPolproduktu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
                     android:ems="10"
                     android:gravity="top"
-                    android:hint="Opis, zastosowania, dodatkowe informacje"
+                    android:hint="@string/opis_zastosowania_dodatkowe_informacje"
                     android:inputType="textMultiLine"
                     android:lines="4"
                     android:textSize="18sp" />
 
                 <Button
-                    android:id="@+id/wyslij"
+                    android:id="@+id/wyslijPolprodukt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_weight="0"
-                    android:text="Dodaj wpis" />
+                    android:onClick="wyslij"
+                    android:text="@string/dodaj_wpis" />
             </LinearLayout>
 
             <LinearLayout
@@ -177,22 +172,20 @@
                 android:visibility="gone">
 
                 <EditText
-                    android:id="@+id/nazwa"
+                    android:id="@+id/nazwaProduktu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
                     android:ems="10"
-                    android:hint="Nazwa"
                     android:inputType="textPersonName"
                     android:textSize="18sp" />
 
                 <Button
-                    android:id="@+id/wyslij"
+                    android:id="@+id/wyslijProdukt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_weight="0"
-                    android:text="Dodaj wpis" />
+                    android:onClick="wyslij"
+                    android:text="@string/dodaj_wpis" />
             </LinearLayout>
 
         </LinearLayout>

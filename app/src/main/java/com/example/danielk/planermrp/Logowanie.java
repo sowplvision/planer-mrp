@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 
 public class Logowanie extends AppCompatActivity {
-    private EditText user;
-    private EditText password;
+    private EditText user, password;
+    private SharedPreferences daneLogowania;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +24,12 @@ public class Logowanie extends AppCompatActivity {
         password = (EditText) findViewById(R.id.haslo);
 
         //odczytywanie preferencji
-        SharedPreferences sharedPreferences = getSharedPreferences("daneLogowania",Context.MODE_PRIVATE);
-        boolean zapisz = sharedPreferences.getBoolean("zapisz",true);
+        daneLogowania = getSharedPreferences("daneLogowania",Context.MODE_PRIVATE);
+        boolean zapisz = daneLogowania.getBoolean("zapisz",true);
 
         if(zapisz) { //auto wypełnianie pól
-            String uLogin = sharedPreferences.getString("login", "");
-            String uPassword = sharedPreferences.getString("haslo", "");
+            String uLogin = daneLogowania.getString("login", "");
+            String uPassword = daneLogowania.getString("haslo", "");
 
             user.setText(uLogin);
             password.setText(uPassword);
@@ -43,11 +43,11 @@ public class Logowanie extends AppCompatActivity {
         String uPassword = password.getText().toString();
 
         //zapisywanie preferencji
-        SharedPreferences sharedPreferences = getSharedPreferences("daneLogowania", Context.MODE_PRIVATE);
-        boolean zapisz = sharedPreferences.getBoolean("zapisz",true);
+        daneLogowania = getSharedPreferences("daneLogowania", Context.MODE_PRIVATE);
+        boolean zapisz = daneLogowania.getBoolean("zapisz",true);
 
         if(zapisz) { // jeżeli użytkownik chce zapamiętywać swoje dane logowania
-            SharedPreferences.Editor editor = sharedPreferences.edit();
+            SharedPreferences.Editor editor = daneLogowania.edit();
 
             editor.putString("login", uLogin);
             editor.putString("haslo", uPassword);
