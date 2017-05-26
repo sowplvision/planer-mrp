@@ -31,6 +31,9 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
+        String inputCharSet = "UTF-8";
+        String outputCharSer = "UTF-8";
+
         //rodzaj operacji do wykonania w tle
         operationType = params[0];
 
@@ -51,10 +54,10 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
 
                 //wysyłanie zapytania o zalogowanie uzytkownika
                 OutputStream outputStream = connection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, outputCharSer));
 
-                String sqlRequest = URLEncoder.encode("login", "UTF-8") + "=" + URLEncoder.encode(uLogin, "UTF-8") +
-                        "&" + URLEncoder.encode("haslo", "UTF-8") + "=" + URLEncoder.encode(uPassword, "UTF-8");
+                String sqlRequest = URLEncoder.encode("login", outputCharSer) + "=" + URLEncoder.encode(uLogin, outputCharSer) +
+                        "&" + URLEncoder.encode("haslo", outputCharSer) + "=" + URLEncoder.encode(uPassword, outputCharSer);
 
                 bufferedWriter.write(sqlRequest);
                 bufferedWriter.flush();
@@ -64,7 +67,7 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
 
                 //odbieranie odpowiedzi od serwera
                 InputStream inputStream = connection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, inputCharSet));
 
                 String result = "";
                 String line = "";
@@ -83,6 +86,123 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
             } catch (IOException e) {
             }
         }
+
+        if(operationType.equals("insert_material")){
+            try {
+                String loginURL = "http://v-ie.uek.krakow.pl/~s187086/insert_material.php";
+
+                String nazwa = params[1];
+                String opis = params[2];
+                String czas = params[3];
+                String naStanie = params[4];
+                String partia = params[5];
+                String cena = params[6];
+
+                URL url = new URL(loginURL);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+
+                OutputStream outputStream = connection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+
+                String sqlRequest = URLEncoder.encode("nazwa", outputCharSer) + "=" + URLEncoder.encode(nazwa, outputCharSer) +
+                        "&" + URLEncoder.encode("opis", outputCharSer) + "=" + URLEncoder.encode(opis, outputCharSer) +
+                        "&" + URLEncoder.encode("czas", outputCharSer) + "=" + URLEncoder.encode(czas, outputCharSer) +
+                        "&" + URLEncoder.encode("naStanie", outputCharSer) + "=" + URLEncoder.encode(naStanie, outputCharSer) +
+                        "&" + URLEncoder.encode("partia", outputCharSer) + "=" + URLEncoder.encode(partia, outputCharSer) +
+                        "&" + URLEncoder.encode("cena", outputCharSer) + "=" + URLEncoder.encode(cena, outputCharSer);
+
+                bufferedWriter.write(sqlRequest);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+
+                outputStream.close();
+
+                connection.disconnect();
+
+            } catch (MalformedURLException e) {
+            } catch (IOException e) {
+            }
+        }
+
+        if(operationType.equals("insert_polprodukt")){
+            try {
+                String loginURL = "http://v-ie.uek.krakow.pl/~s187086/insert_polprodukt.php";
+
+                String nazwa = params[1];
+                String opis = params[2];
+                String czas = params[3];
+                String naStanie = params[4];
+                String partia = params[5];
+
+                URL url = new URL(loginURL);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+
+                OutputStream outputStream = connection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+
+                String sqlRequest = URLEncoder.encode("nazwa", outputCharSer) + "=" + URLEncoder.encode(nazwa, outputCharSer) +
+                        "&" + URLEncoder.encode("opis", outputCharSer) + "=" + URLEncoder.encode(opis, outputCharSer) +
+                        "&" + URLEncoder.encode("czas", outputCharSer) + "=" + URLEncoder.encode(czas, outputCharSer) +
+                        "&" + URLEncoder.encode("naStanie", outputCharSer) + "=" + URLEncoder.encode(naStanie, outputCharSer) +
+                        "&" + URLEncoder.encode("partia", outputCharSer) + "=" + URLEncoder.encode(partia, outputCharSer);
+
+                bufferedWriter.write(sqlRequest);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+
+                outputStream.close();
+
+                connection.disconnect();
+
+            } catch (MalformedURLException e) {
+            } catch (IOException e) {
+            }
+        }
+
+        if(operationType.equals("insert_produkt")){
+            try {
+                String loginURL = "http://v-ie.uek.krakow.pl/~s187086/insert_produkt.php";
+
+                String nazwa = params[1];
+                String opis = params[2];
+                String czas = params[3];
+                String naStanie = params[4];
+                String partia = params[5];
+
+                URL url = new URL(loginURL);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+
+                OutputStream outputStream = connection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+
+                String sqlRequest = URLEncoder.encode("nazwa", outputCharSer) + "=" + URLEncoder.encode(nazwa, outputCharSer) +
+                        "&" + URLEncoder.encode("opis", outputCharSer) + "=" + URLEncoder.encode(opis, outputCharSer) +
+                        "&" + URLEncoder.encode("czas", outputCharSer) + "=" + URLEncoder.encode(czas, outputCharSer) +
+                        "&" + URLEncoder.encode("naStanie", outputCharSer) + "=" + URLEncoder.encode(naStanie, outputCharSer) +
+                        "&" + URLEncoder.encode("partia", outputCharSer) + "=" + URLEncoder.encode(partia, outputCharSer);
+
+                bufferedWriter.write(sqlRequest);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+
+                outputStream.close();
+
+                connection.disconnect();
+
+            } catch (MalformedURLException e) {
+            } catch (IOException e) {
+            }
+        }
+
         return "Brak połączenia lub błąd skryptu.";
     }
 
@@ -104,6 +224,15 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
             else {
                 Toast.makeText(context, result, Toast.LENGTH_LONG).show();
             }
+        }
+        if(operationType.equals("insert_material")){
+
+        }
+        if(operationType.equals("insert_polprodukt")){
+
+        }
+        if(operationType.equals("insert_produkt")){
+
         }
     }
 
