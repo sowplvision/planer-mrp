@@ -105,7 +105,7 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
                 connection.setDoInput(true);
 
                 OutputStream outputStream = connection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, outputCharSer));
 
                 String sqlRequest = URLEncoder.encode("nazwa", outputCharSer) + "=" + URLEncoder.encode(nazwa, outputCharSer) +
                         "&" + URLEncoder.encode("opis", outputCharSer) + "=" + URLEncoder.encode(opis, outputCharSer) +
@@ -144,7 +144,7 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
                 connection.setDoInput(true);
 
                 OutputStream outputStream = connection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, outputCharSer));
 
                 String sqlRequest = URLEncoder.encode("nazwa", outputCharSer) + "=" + URLEncoder.encode(nazwa, outputCharSer) +
                         "&" + URLEncoder.encode("opis", outputCharSer) + "=" + URLEncoder.encode(opis, outputCharSer) +
@@ -182,7 +182,7 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
                 connection.setDoInput(true);
 
                 OutputStream outputStream = connection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, outputCharSer));
 
                 String sqlRequest = URLEncoder.encode("nazwa", outputCharSer) + "=" + URLEncoder.encode(nazwa, outputCharSer) +
                         "&" + URLEncoder.encode("opis", outputCharSer) + "=" + URLEncoder.encode(opis, outputCharSer) +
