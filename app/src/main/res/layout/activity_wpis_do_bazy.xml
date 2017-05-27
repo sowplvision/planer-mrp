@@ -185,7 +185,7 @@
                     android:textSize="18sp" />
 
                 <ListView
-                    android:id="@+id/materialy"
+                    android:id="@+id/materialyList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -255,6 +255,11 @@
                     android:hint="@string/wielkosc_partii"
                     android:inputType="number"
                     android:textSize="18sp" />
+
+                <ListView
+                    android:id="@+id/polproduktyList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
                 <Button
                     android:id="@+id/wyslijProdukt"
