@@ -38,8 +38,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1.02"
-                android:ems="10"
-                android:inputType="textMultiLine"
                 android:text="@string/OpisApki"
                 android:textSize="20sp" />
 
@@ -55,8 +53,6 @@
                 android:id="@+id/Wymaganiaopis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textMultiLine"
                 android:text="@string/Opiswymagan"
                 android:textSize="20sp" />
 
@@ -73,8 +69,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.01"
-                android:ems="10"
-                android:inputType="textMultiLine"
                 android:text="@string/NazwiskaAutor"
                 android:textSize="20sp" />
 
