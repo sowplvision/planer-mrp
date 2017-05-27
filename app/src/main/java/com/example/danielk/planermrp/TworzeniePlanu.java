@@ -14,22 +14,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class TworzeniePlanu extends AppCompatActivity {
     private EditText wartoscPopyt1, wartoscPopyt2, wartoscPopyt3, wartoscPopyt4, wartoscPopyt5, wartoscPopyt6, wartoscPopyt7, wartoscPopyt8, wartoscPopyt9, wartoscPopyt10;
     private EditText wartoscProdukcji1, wartoscProdukcji2, wartoscProdukcji3, wartoscProdukcji4, wartoscProdukcji5, wartoscProdukcji6, wartoscProdukcji7, wartoscProdukcji8, wartoscProdukcji9, wartoscProdukcji10;
     private TextView wartoscDostepne1, wartoscDostepne2, wartoscDostepne3, wartoscDostepne4, wartoscDostepne5, wartoscDostepne6, wartoscDostepne7, wartoscDostepne8, wartoscDostepne9, wartoscDostepne10;
+    private Integer naStanie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tworzenie_planu);
-        ObslugaBazyDanych Daniel = new ObslugaBazyDanych(this);
-    }
 
-
-
-    public void stworzPlan(View view) {
         wartoscPopyt1 = (EditText)findViewById(R.id.edit_n_popyt1);
         wartoscPopyt2 = (EditText)findViewById(R.id.edit_n_popyt2);
         wartoscPopyt3 = (EditText)findViewById(R.id.edit_n_popyt3);
@@ -63,9 +60,20 @@ public class TworzeniePlanu extends AppCompatActivity {
         wartoscDostepne9 = (TextView)findViewById(R.id.edit_n_dostepne9);
         wartoscDostepne10 = (TextView)findViewById(R.id.edit_n_dostepne10);
 
+        ObslugaBazyDanych daniel = new ObslugaBazyDanych(this);
+
+        try {
+            naStanie = Integer.parseInt(daniel.execute("plan").get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
+    public void stworzPlan(View view) {
         String wartosc1 = wartoscPopyt1.getText().toString(); //pobiera wartość popytu...
         String wartosc2 = wartoscPopyt2.getText().toString();
         String wartosc3 = wartoscPopyt3.getText().toString();
@@ -98,40 +106,7 @@ public class TworzeniePlanu extends AppCompatActivity {
         String wdostepne8 = wartoscDostepne1.getText().toString();
         String wdostepne9 = wartoscDostepne1.getText().toString();
         String wdostepne10 = wartoscDostepne1.getText().toString(); // .
-
-
-
     }
-
-
-
-
-        /*
-        wartoscPopyt1 = (EditText)findViewById(R.id.edit_n_popyt1);
-        wartoscPopyt2 = (EditText)findViewById(R.id.edit_n_popyt2);
-        wartoscPopyt3 = (EditText)findViewById(R.id.edit_n_popyt3);
-        wartoscPopyt4 = (EditText)findViewById(R.id.edit_n_popyt4);
-        wartoscPopyt5 = (EditText)findViewById(R.id.edit_n_popyt5);
-        wartoscPopyt6 = (EditText)findViewById(R.id.edit_n_popyt6);
-        wartoscPopyt7 = (EditText)findViewById(R.id.edit_n_popyt7);
-        wartoscPopyt8 = (EditText)findViewById(R.id.edit_n_popyt8);
-        wartoscPopyt9 = (EditText)findViewById(R.id.edit_n_popyt9);
-        wartoscPopyt10 = (EditText)findViewById(R.id.edit_n_popyt10);
-
-        wartoscPopyt1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                String wartosc1 = wartoscPopyt1.getText().toString(); //pobiera wartość
-
-            }
-        }); */
-
-
-
-
-
-
 
     //Menu ustawien
     @Override
