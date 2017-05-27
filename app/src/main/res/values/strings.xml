@@ -9,6 +9,7 @@
     <string name="informacje">Informacje o programie</string>
     <string name="powitanie">Witaj!</string>
     <string name="ekran_glowny">Co chciałbyś zrobić:</string>
+<<<<<<< HEAD
     <string name="typ_produktu_label">Typ produktu:</string>
     <string name="opis_zastosowania_dodatkowe_informacje">Opis, zastosowania, dodatkowe informacje</string>
     <string name="czas_montazu">Czas montażu</string>
@@ -16,4 +17,24 @@
     <string name="wielkosc_partii">Wielkość produkowanej partii</string>
     <string name="cena">Cena za jedną sztukę</string>
     <string name="dodaj_wpis">Dodaj wpis</string>
+=======
+    <string name="o_aplikacji">O aplikacji</string>
+    <string name="planer_mrp_v0_99">Planer MRP v0.99</string>
+    <string name="OpisApki">Aplikacja dla systemu Android która pozwoli planistom firmy meblowej:\n
+        \n\n-Przygotować plan produkcji wg algorytmu MRP uwzględniając czas potrzebny na wyprodukowanie produktu,
+        \n\n-Ocenić koszt oraz czas potrzebny do wyprodukowania wg przygotowanego planu przez aplikacje,
+        \n\n-Pobrać z bazy danych informacje o produktach które się tam znajdują oraz materiałach z których się składa wybrany produkt,
+        \n\n-Dodawać nowe produkty do bazy danych które składać się będą z wybieranych materiałów a ich koszt będzie sugerowany na podstawie kosztu pojedynczego materiału,
+        \n\n-Aplikacja będzie miała wspomagać decyzje dotyczące ceny produktu (obliczany będzie koszt materiałów potrzebnych do produkcji) oraz daty rozpoczęcia produkcji (wg czasu potrzebnego do wyprodukowania),
+        \n\n-Aplikacja gotowy plan będzie zapisywać w formie plików Excel\'owskich na urządzeniu mobilnym.
+        \n\nWszelkie informacje dotyczące bazy danych pobierane są z sieci.</string>
+    <string name="wymagania_aplikacji">Wymagania aplikacji</string>
+    <string name="Opiswymagan">- Dostęp do Internetu,
+        \n\n- Android wersji 4.15 lub wyżej,
+        \n\n- Numer karty kredytowej,
+        \n\n- Numer PIN do powyższej karty,
+        \n\n- Security code podany na odwrocie karty.</string>
+    <string name="autorzy">Autorzy</string>
+    <string name="NazwiskaAutor">Daniel Kucharczyk\nMariusz Nowak</string>
+>>>>>>> pr/1
 </resources>
