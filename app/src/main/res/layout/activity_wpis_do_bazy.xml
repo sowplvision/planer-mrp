@@ -78,7 +78,7 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/czas"
+                    android:id="@+id/czasMaterialu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
@@ -88,7 +88,7 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/ilosc"
+                    android:id="@+id/iloscMaterialu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
@@ -98,7 +98,7 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/partia"
+                    android:id="@+id/partiaMaterialu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
@@ -108,7 +108,7 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/cena"
+                    android:id="@+id/cenaMaterialu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
@@ -123,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_weight="0"
-                    android:onClick="wyslij"
+                    android:onClick="wyslijMaterial"
                     android:text="@string/dodaj_wpis" />
             </LinearLayout>
 
@@ -159,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:onClick="wyslij"
+                    android:onClick="wyslijPolprodukt"
                     android:text="@string/dodaj_wpis" />
             </LinearLayout>
 
@@ -184,7 +184,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:onClick="wyslij"
+                    android:onClick="wyslijProdukt"
                     android:text="@string/dodaj_wpis" />
             </LinearLayout>
 

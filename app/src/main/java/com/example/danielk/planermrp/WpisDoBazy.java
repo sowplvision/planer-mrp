@@ -17,6 +17,7 @@ import android.widget.Spinner;
 public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListener {
     private LinearLayout material, polprodukt, produkt;
     private EditText nazwa, opis, czas, ilosc, partia, cena;
+    private String name, details, time, quantity, partion, price;
     private Button wyslij;
 
     @Override
@@ -48,10 +49,10 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
 
             nazwa = (EditText) findViewById(R.id.nazwaMaterialu);
             opis = (EditText) findViewById(R.id.opisMaterialu);
-            czas = (EditText) findViewById(R.id.czas);
-            ilosc = (EditText) findViewById(R.id.ilosc);
-            partia = (EditText) findViewById(R.id.partia);
-            cena = (EditText) findViewById(R.id.cena);
+            czas = (EditText) findViewById(R.id.czasMaterialu);
+            ilosc = (EditText) findViewById(R.id.iloscMaterialu);
+            partia = (EditText) findViewById(R.id.partiaMaterialu);
+            cena = (EditText) findViewById(R.id.cenaMaterialu);
             wyslij = (Button) findViewById(R.id.wyslijMaterial);
 
             nazwa.setHint("Nazwa materiału");
@@ -101,6 +102,23 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
         return true;
     }
 
-    public void wyslij(View view) {
+    public void wyslijMaterial(View view) {
+        name = nazwa.getText().toString();
+        details = opis.getText().toString();
+        time = czas.getText().toString();
+        quantity = ilosc.getText().toString();
+        partion = partia.getText().toString();
+        price = cena.getText().toString();
+
+        ObslugaBazyDanych obslugaBazyDanych = new ObslugaBazyDanych(this);
+        obslugaBazyDanych.execute("insert_material",name,details,time,quantity,partion,price);
+    }
+
+    public void wyslijPolprodukt(View view) {
+
+    }
+
+    public void wyslijProdukt(View view) {
+
     }
 }

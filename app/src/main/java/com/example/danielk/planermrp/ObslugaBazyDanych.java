@@ -120,8 +120,21 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
 
                 outputStream.close();
 
+                InputStream inputStream = connection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, inputCharSet));
+
+                String result = "";
+                String line = "";
+
+                while ((line = bufferedReader.readLine())!=null){
+                    result+=line;
+                }
+
+                bufferedReader.close();
+                inputStream.close();
                 connection.disconnect();
 
+                return result;
             } catch (MalformedURLException e) {
             } catch (IOException e) {
             }
@@ -158,8 +171,21 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
 
                 outputStream.close();
 
+                InputStream inputStream = connection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, inputCharSet));
+
+                String result = "";
+                String line = "";
+
+                while ((line = bufferedReader.readLine())!=null){
+                    result+=line;
+                }
+
+                bufferedReader.close();
+                inputStream.close();
                 connection.disconnect();
 
+                return result;
             } catch (MalformedURLException e) {
             } catch (IOException e) {
             }
@@ -196,8 +222,21 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
 
                 outputStream.close();
 
+                InputStream inputStream = connection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, inputCharSet));
+
+                String result = "";
+                String line = "";
+
+                while ((line = bufferedReader.readLine())!=null){
+                    result+=line;
+                }
+
+                bufferedReader.close();
+                inputStream.close();
                 connection.disconnect();
 
+                return result;
             } catch (MalformedURLException e) {
             } catch (IOException e) {
             }
@@ -226,13 +265,13 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
             }
         }
         if(operationType.equals("insert_material")){
-
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         }
         if(operationType.equals("insert_polprodukt")){
-
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         }
         if(operationType.equals("insert_produkt")){
-
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         }
     }
 
