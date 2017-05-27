@@ -1,6 +1,7 @@
 package com.example.danielk.planermrp;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +29,7 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
     private String[] materialy, polprodukty;
     private ListView materialyListView, polproduktyListView;
     private Adapter materialyAdapter, polproduktyAdapter;
-    private ObslugaBazyDanych obslugaBazyDanych;
+    private ObslugaBazyDanych insertMaterial, insertPolprodukt, insertProdukt, materials, halfproducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +48,32 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
         polprodukt = (LinearLayout) findViewById(R.id.polprodukt);
         produkt = (LinearLayout) findViewById(R.id.produkt);
 
-        obslugaBazyDanych = new ObslugaBazyDanych(this);
+        insertMaterial = new ObslugaBazyDanych(this);
+        insertPolprodukt = new ObslugaBazyDanych(this);
+        insertProdukt = new ObslugaBazyDanych(this);
+        materials = new ObslugaBazyDanych(this);
+        halfproducts = new ObslugaBazyDanych(this);
 
-        materialyListView = (ListView) findViewById(R.id.materialyList);
-        polproduktyListView = (ListView) findViewById(R.id.polproduktyList);
-    }
-
-    public String[] getIt(String operationType){
-        String items[] = null;
         try {
-            String temp = obslugaBazyDanych.execute(operationType).get();
-            items = temp.split("; ");
+            String temp = materials.execute("materials").get();
+            materialy = temp.split("; ");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        return items;
+
+        try {
+            String temp = halfproducts.execute("halfproducts").get();
+            polprodukty = temp.split("; ");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        materialyListView = (ListView) findViewById(R.id.materialyList);
+        polproduktyListView = (ListView) findViewById(R.id.polproduktyList);
     }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -118,8 +128,6 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
 
             nazwa.setHint("Nazwa półproduktu");
 
-            materialy = getIt("materials");
-
             materialyAdapter = new Adapter(materialy);
             materialyListView.setAdapter(materialyAdapter);
             setListViewHeightBasedOnChildren(materialyListView);
@@ -136,8 +144,6 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
             partia = (EditText) findViewById(R.id.partiaProduktu);
 
             nazwa.setHint("Nazwa produktu");
-
-            polprodukty = getIt("halfproducts");
 
             polproduktyAdapter = new Adapter(polprodukty);
             polproduktyListView.setAdapter(polproduktyAdapter);
@@ -177,15 +183,27 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
 
         price = price.replace('.', ',');
 
-        obslugaBazyDanych.execute("insert_material", name, details, time, quantity, partion, price);
+        insertMaterial.execute("insert_material", name, details, time, quantity, partion, price);
     }
 
     public void wyslijPolprodukt(View view) {
+        name = nazwa.getText().toString();
+        details = opis.getText().toString();
+        time = czas.getText().toString();
+        quantity = ilosc.getText().toString();
+        partion = partia.getText().toString();
 
+        insertPolprodukt.execute("insert_polprodukt", name, details, time, quantity, partion, price);
     }
 
     public void wyslijProdukt(View view) {
+        name = nazwa.getText().toString();
+        details = opis.getText().toString();
+        time = czas.getText().toString();
+        quantity = ilosc.getText().toString();
+        partion = partia.getText().toString();
 
+        insertProdukt.execute("insert_produkt", name, details, time, quantity, partion, price);
     }
 
     public class Adapter extends BaseAdapter {
