@@ -21,6 +21,9 @@ public class TworzeniePlanu extends AppCompatActivity {
     private EditText wartoscProdukcji1, wartoscProdukcji2, wartoscProdukcji3, wartoscProdukcji4, wartoscProdukcji5, wartoscProdukcji6, wartoscProdukcji7, wartoscProdukcji8, wartoscProdukcji9, wartoscProdukcji10;
     private TextView wartoscDostepne1, wartoscDostepne2, wartoscDostepne3, wartoscDostepne4, wartoscDostepne5, wartoscDostepne6, wartoscDostepne7, wartoscDostepne8, wartoscDostepne9, wartoscDostepne10;
     private Integer naStanie;
+    String wartosci[] = new String[10];
+    String wprodukcji[] = new String[10];
+    String wdostepne[] = new String[10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,38 +77,38 @@ public class TworzeniePlanu extends AppCompatActivity {
 
 
     public void stworzPlan(View view) {
-        String wartosc1 = wartoscPopyt1.getText().toString(); //pobiera wartość popytu...
-        String wartosc2 = wartoscPopyt2.getText().toString();
-        String wartosc3 = wartoscPopyt3.getText().toString();
-        String wartosc4 = wartoscPopyt4.getText().toString();
-        String wartosc5 = wartoscPopyt5.getText().toString();
-        String wartosc6 = wartoscPopyt6.getText().toString();
-        String wartosc7 = wartoscPopyt7.getText().toString();
-        String wartosc8 = wartoscPopyt8.getText().toString();
-        String wartosc9 = wartoscPopyt9.getText().toString();
-        String wartosc10 = wartoscPopyt10.getText().toString(); // .
+        wartosci[0] = wartoscPopyt1.getText().toString(); //pobiera wartość popytu...
+        wartosci[1] = wartoscPopyt2.getText().toString();
+        wartosci[2] = wartoscPopyt3.getText().toString();
+        wartosci[3] = wartoscPopyt4.getText().toString();
+        wartosci[4] = wartoscPopyt5.getText().toString();
+        wartosci[5] = wartoscPopyt6.getText().toString();
+        wartosci[6] = wartoscPopyt7.getText().toString();
+        wartosci[7] = wartoscPopyt8.getText().toString();
+        wartosci[8] = wartoscPopyt9.getText().toString();
+        wartosci[9] = wartoscPopyt10.getText().toString(); // .
 
-        String wprodukcji1 = wartoscProdukcji1.getText().toString(); //pobieranie wartości produkcji...
-        String wprodukcji2 = wartoscProdukcji1.getText().toString();
-        String wprodukcji3 = wartoscProdukcji1.getText().toString();
-        String wprodukcji4 = wartoscProdukcji1.getText().toString();
-        String wprodukcji5 = wartoscProdukcji1.getText().toString();
-        String wprodukcji6 = wartoscProdukcji1.getText().toString();
-        String wprodukcji7 = wartoscProdukcji1.getText().toString();
-        String wprodukcji8 = wartoscProdukcji1.getText().toString();
-        String wprodukcji9 = wartoscProdukcji1.getText().toString();
-        String wprodukcji10 = wartoscProdukcji1.getText().toString(); // .
+        wprodukcji[0] = wartoscProdukcji1.getText().toString(); // pobiera wartość produkcji...
+        wprodukcji[1] = wartoscProdukcji2.getText().toString();
+        wprodukcji[2] = wartoscProdukcji3.getText().toString();
+        wprodukcji[3] = wartoscProdukcji4.getText().toString();
+        wprodukcji[4] = wartoscProdukcji5.getText().toString();
+        wprodukcji[5] = wartoscProdukcji6.getText().toString();
+        wprodukcji[6] = wartoscProdukcji7.getText().toString();
+        wprodukcji[7] = wartoscProdukcji8.getText().toString();
+        wprodukcji[8] = wartoscProdukcji9.getText().toString();
+        wprodukcji[9] = wartoscProdukcji10.getText().toString(); // .
 
-        String wdostepne1 = wartoscDostepne1.getText().toString(); //pobieranie wartosci dostepne...
-        String wdostepne2 = wartoscDostepne1.getText().toString();
-        String wdostepne3 = wartoscDostepne1.getText().toString();
-        String wdostepne4 = wartoscDostepne1.getText().toString();
-        String wdostepne5 = wartoscDostepne1.getText().toString();
-        String wdostepne6 = wartoscDostepne1.getText().toString();
-        String wdostepne7 = wartoscDostepne1.getText().toString();
-        String wdostepne8 = wartoscDostepne1.getText().toString();
-        String wdostepne9 = wartoscDostepne1.getText().toString();
-        String wdostepne10 = wartoscDostepne1.getText().toString(); // .
+        wdostepne[0] = wartoscDostepne1.getText().toString(); // pobiera wartosc dostepnego towaru...
+        wdostepne[1] = wartoscDostepne2.getText().toString();
+        wdostepne[2] = wartoscDostepne3.getText().toString();
+        wdostepne[3] = wartoscDostepne4.getText().toString();
+        wdostepne[4] = wartoscDostepne5.getText().toString();
+        wdostepne[5] = wartoscDostepne6.getText().toString();
+        wdostepne[6] = wartoscDostepne7.getText().toString();
+        wdostepne[7] = wartoscDostepne8.getText().toString();
+        wdostepne[8] = wartoscDostepne9.getText().toString();
+        wdostepne[9] = wartoscDostepne10.getText().toString();
     }
 
     //Menu ustawien
