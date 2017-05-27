@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -18,7 +17,6 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
     private LinearLayout material, polprodukt, produkt;
     private EditText nazwa, opis, czas, ilosc, partia, cena;
     private String name, details, time, quantity, partion, price;
-    private Button wyslij;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +51,6 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
             ilosc = (EditText) findViewById(R.id.iloscMaterialu);
             partia = (EditText) findViewById(R.id.partiaMaterialu);
             cena = (EditText) findViewById(R.id.cenaMaterialu);
-            wyslij = (Button) findViewById(R.id.wyslijMaterial);
 
             nazwa.setHint("Nazwa materiału");
         }
@@ -64,7 +61,9 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
 
             nazwa = (EditText) findViewById(R.id.nazwaPolproduktu);
             opis = (EditText) findViewById(R.id.opisPolproduktu);
-            wyslij = (Button) findViewById(R.id.wyslijPolprodukt);
+            czas = (EditText) findViewById(R.id.czasPolproduktu);
+            ilosc = (EditText) findViewById(R.id.iloscPolproduktu);
+            partia = (EditText) findViewById(R.id.partiaPolproduktu);
 
             nazwa.setHint("Nazwa półproduktu");
         }
@@ -74,7 +73,10 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
             produkt.setVisibility(View.VISIBLE);
 
             nazwa = (EditText) findViewById(R.id.nazwaProduktu);
-            wyslij = (Button) findViewById(R.id.wyslijProdukt);
+            opis = (EditText) findViewById(R.id.opisProduktu);
+            czas = (EditText) findViewById(R.id.czasProduktu);
+            ilosc = (EditText) findViewById(R.id.iloscProduktu);
+            partia = (EditText) findViewById(R.id.partiaProduktu);
 
             nazwa.setHint("Nazwa produktu");
         }
@@ -109,6 +111,8 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
         quantity = ilosc.getText().toString();
         partion = partia.getText().toString();
         price = cena.getText().toString();
+
+        price = price.replace('.',',');
 
         ObslugaBazyDanych obslugaBazyDanych = new ObslugaBazyDanych(this);
         obslugaBazyDanych.execute("insert_material",name,details,time,quantity,partion,price);

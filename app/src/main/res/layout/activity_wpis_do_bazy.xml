@@ -133,7 +133,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <EditText
                     android:id="@+id/nazwaPolproduktu"
@@ -152,6 +152,36 @@
                     android:hint="@string/opis_zastosowania_dodatkowe_informacje"
                     android:inputType="textMultiLine"
                     android:lines="4"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/czasPolproduktu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="@string/czas_montazu"
+                    android:inputType="number"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/iloscPolproduktu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="@string/dostepne_w_magazynie"
+                    android:inputType="number"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/partiaPolproduktu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="@string/wielkosc_partii"
+                    android:inputType="number"
                     android:textSize="18sp" />
 
                 <Button
@@ -177,6 +207,48 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/opisProduktu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:hint="@string/opis_zastosowania_dodatkowe_informacje"
+                    android:inputType="textMultiLine"
+                    android:lines="4"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/czasProduktu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="@string/czas_montazu"
+                    android:inputType="number"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/iloscProduktu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="@string/dostepne_w_magazynie"
+                    android:inputType="number"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/partiaProduktu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:ems="10"
+                    android:hint="@string/wielkosc_partii"
+                    android:inputType="number"
                     android:textSize="18sp" />
 
                 <Button
