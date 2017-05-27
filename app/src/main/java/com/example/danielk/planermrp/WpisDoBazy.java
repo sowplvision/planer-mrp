@@ -2,21 +2,32 @@ package com.example.danielk.planermrp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListener {
     private LinearLayout material, polprodukt, produkt;
     private EditText nazwa, opis, czas, ilosc, partia, cena;
     private String name, details, time, quantity, partion, price;
+    private String[] materialy, polprodukty;
+    private ObslugaBazyDanych obslugaBazyDanych;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +45,47 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
         material = (LinearLayout) findViewById(R.id.material);
         polprodukt = (LinearLayout) findViewById(R.id.polprodukt);
         produkt = (LinearLayout) findViewById(R.id.produkt);
+
+        obslugaBazyDanych = new ObslugaBazyDanych(this);
+
+        try {
+            String temp = obslugaBazyDanych.execute("materials").get();
+            materialy = temp.split("; ");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String temp = obslugaBazyDanych.execute("halfproducts").get();
+            polprodukty = temp.split("; ");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ActionBar.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
     }
 
     @Override
@@ -66,6 +118,21 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
             partia = (EditText) findViewById(R.id.partiaPolproduktu);
 
             nazwa.setHint("Nazwa półproduktu");
+
+            try {
+                String temp = obslugaBazyDanych.execute("materials").get();
+                materialy = temp.split("; ");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+
+            ListView listView = (ListView) findViewById(R.id.materialy);
+
+            Adapter materialyAdapter = new Adapter(materialy);
+            listView.setAdapter(materialyAdapter);
+            setListViewHeightBasedOnChildren(listView);
         }
         if(typProduktu.equals("Produkt")){
             material.setVisibility(View.GONE);
@@ -79,6 +146,15 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
             partia = (EditText) findViewById(R.id.partiaProduktu);
 
             nazwa.setHint("Nazwa produktu");
+
+            try {
+                String temp = obslugaBazyDanych.execute("halfproducts").get();
+                polprodukty = temp.split("; ");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -114,7 +190,6 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
 
         price = price.replace('.',',');
 
-        ObslugaBazyDanych obslugaBazyDanych = new ObslugaBazyDanych(this);
         obslugaBazyDanych.execute("insert_material",name,details,time,quantity,partion,price);
     }
 
@@ -124,5 +199,38 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
 
     public void wyslijProdukt(View view) {
 
+    }
+
+    public class Adapter extends BaseAdapter{
+        private String[] items;
+        public Adapter(String[] items){
+            this.items = items;
+        }
+
+        @Override
+        public int getCount() {
+            return items.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            convertView = getLayoutInflater().inflate(R.layout.polprodukty_item,null);
+
+            CheckBox checkBox = (CheckBox)convertView.findViewById(R.id.materialNazwa);
+
+            checkBox.setText(items[position]);
+
+            return convertView;
+        }
     }
 }
