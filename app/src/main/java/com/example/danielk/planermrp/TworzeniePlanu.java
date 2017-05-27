@@ -102,36 +102,6 @@ public class TworzeniePlanu extends AppCompatActivity {
 
     }
 
-
-
-
-        /*
-        wartoscPopyt1 = (EditText)findViewById(R.id.edit_n_popyt1);
-        wartoscPopyt2 = (EditText)findViewById(R.id.edit_n_popyt2);
-        wartoscPopyt3 = (EditText)findViewById(R.id.edit_n_popyt3);
-        wartoscPopyt4 = (EditText)findViewById(R.id.edit_n_popyt4);
-        wartoscPopyt5 = (EditText)findViewById(R.id.edit_n_popyt5);
-        wartoscPopyt6 = (EditText)findViewById(R.id.edit_n_popyt6);
-        wartoscPopyt7 = (EditText)findViewById(R.id.edit_n_popyt7);
-        wartoscPopyt8 = (EditText)findViewById(R.id.edit_n_popyt8);
-        wartoscPopyt9 = (EditText)findViewById(R.id.edit_n_popyt9);
-        wartoscPopyt10 = (EditText)findViewById(R.id.edit_n_popyt10);
-
-        wartoscPopyt1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                String wartosc1 = wartoscPopyt1.getText().toString(); //pobiera wartość
-
-            }
-        }); */
-
-
-
-
-
-
-
     //Menu ustawien
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
