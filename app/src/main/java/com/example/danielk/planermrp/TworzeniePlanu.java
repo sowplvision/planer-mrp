@@ -100,6 +100,33 @@ public class TworzeniePlanu extends AppCompatActivity{
             wprodukcji[i] = wartosciProdukcji[i].getText().toString();
             wdostepne[i] = wartosciDostepne[i].getText().toString();
         }
+        //symbol wiersza i kolumny w csv
+        String nowyWiersz = "\n";
+        String nowaKolumna = ",";
+        String nowaTabela = ";";
+
+        //tworzenie tekstowo tabeli GHP
+        String tresc = "GHP" + nowyWiersz;
+        tresc += "Dzien:" + nowaKolumna;
+        for(int i = 0; i<10; i++){
+            tresc+= (i+1) + nowaKolumna;
+        }
+        tresc +=nowyWiersz + "Przewidywany popyt:" + nowaKolumna;
+        for(int i = 0; i<10; i++){
+            tresc+= wartosci[i] + nowaKolumna;
+        }
+        tresc +=nowyWiersz + "Produkcja:" + nowaKolumna;
+        for(int i = 0; i<10; i++){
+            tresc+= wprodukcji[i] + nowaKolumna;
+        }
+        tresc +=nowyWiersz + "Dostepne:" + nowaKolumna;
+        for(int i = 0; i<10; i++){
+            tresc+= wdostepne[i] + nowaKolumna;
+        }
+
+        //zapisywanie utworzonej tresci do pliku w pamieci wewnetrznej/PlanerMRP/plan.csv
+        ZapisywaniePlanu zapisywaniePlanu = new ZapisywaniePlanu(tresc,this);
+        zapisywaniePlanu.zapisz();
     }
 
     //Menu ustawien

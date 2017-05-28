@@ -1,12 +1,7 @@
 package com.example.danielk.planermrp;
 
-import android.os.Bundle;
+import android.content.Context;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -18,41 +13,26 @@ import java.io.IOException;
  *  Klasa zapisuje dane podane przez użytkownika oraz tworzy plik z rozszerzeniem .csv
  */
 
-public class ZapisywaniePlanu extends AppCompatActivity {
-    public EditText editText;
-    public TextView textView;
-    public Button save;
+public class ZapisywaniePlanu{
+    private static Context context;
+    private static String tresc;
+    private static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PlanerMRP";
 
-    public String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/aaZapisywaniePlanu";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tworzenie_planu);
-
-       // editText = (EditText) findViewById(R.id.editText);
-       // textView = (TextView) findViewById(R.id.textView);
-       // save = (Button) findViewById(R.id.save);
+    public ZapisywaniePlanu(String tresc, Context context){
+        this.tresc = tresc;
+        this.context = context;
 
         File dir = new File(path);
         dir.mkdirs();
     }
-    public void buttonSave (View view){
 
-        File file = new File (path + "/savedFile.csv");
-        String[] saveText = String.valueOf(editText.getText()).split(System.getProperty("line.separator"));
+    public static void zapisz() {
+        File plik = new File(path + "/plan.csv");
+        String[] data = tresc.split(";");
 
-        editText.setText("");
-
-        Toast.makeText(getApplicationContext(), "Zapisano", Toast.LENGTH_LONG).show();
-
-        Save (file, saveText);
-    }
-
-    public static void Save(File file, String[] data) {
         FileOutputStream fos = null;
         try {
-            fos = new FileOutputStream(file);
+            fos = new FileOutputStream(plik);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -61,7 +41,7 @@ public class ZapisywaniePlanu extends AppCompatActivity {
                 for (int i = 0; i < data.length; i++) {
                     fos.write(data[i].getBytes());
                     if (i < data.length - 1) {
-                        fos.write("\n".getBytes());
+                        fos.write("\n\n".getBytes());
                     }
                 }
             } catch (IOException e) {
@@ -73,6 +53,7 @@ public class ZapisywaniePlanu extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            Toast.makeText(context,"Pomyślnie utworzono plik", Toast.LENGTH_LONG).show();
         }
     }
 }
