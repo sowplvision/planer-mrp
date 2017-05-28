@@ -5,12 +5,18 @@ oraz oceniać koszta materiałów.
 
 # Funkcje
 Aplikacja, która pozwala:
+
 -Przygotować plan produkcji wg algorytmu MRP uwzględniając czas potrzebny na wyprodukowanie produktu.
 
 -Ocenić koszt oraz czas potrzebny do wyprodukowania wg przygotowanego planu przez aplikacje.
+
 -Pobrać z bazy danych informacje o produktach które się tam znajdują oraz materiałach z których się składa wybrany produkt.
--Dodawać nowe produkty do bazy danych które składać się będą z wybieranych materiałów a ich koszt będzie sugerowany na podstawie kosztu pojedynczego materiału.
+
+-Dodawać nowe produkty do bazy danych które składać się będą z wybieranych materiałów a ich koszt będzie sugerowany na podstawie 
+kosztu pojedynczego materiału.
+
 -Aplikacja będzie miała wspomagać decyzje dotyczące ceny produktu (obliczany będzie koszt materiałów potrzebnych do produkcji) oraz daty rozpoczęcia produkcji (wg czasu potrzebnego do wyprodukowania)
+
 -Stworzyć plan oraz zapisać go w formie pliku Excel'owskich na urządzeniu mobilnym.
 
 ## Panel główny
