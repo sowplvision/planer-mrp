@@ -48,6 +48,8 @@ Zawiera opis aplikacji, wersje, wymagania oraz nazwiska autorów.
 
 # Autorzy 
 Aplikacja wykonana przez studentów III roku, Informatyki Stosowanej z grupy KrDZIs3011Io.
+
 Daniel Kucharczyk 187086
+
 Mariusz Nowak 187617
 
