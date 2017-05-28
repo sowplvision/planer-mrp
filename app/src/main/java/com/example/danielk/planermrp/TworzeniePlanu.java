@@ -1,8 +1,11 @@
 package com.example.danielk.planermrp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,6 +74,8 @@ public class TworzeniePlanu extends AppCompatActivity{
         }
         for(int i=0; i<10; i++) {
             wartosciDostepne[i].setText(naStanie.toString());
+            wartosciProdukcji[i].addTextChangedListener(new TextChangeListener(this,i));
+            wartosciPopytu[i].addTextChangedListener(new TextChangeListener(this,i));
         }
     }
 
@@ -125,5 +130,66 @@ public class TworzeniePlanu extends AppCompatActivity{
                 break;
         }
         return true;
+    }
+
+    private class TextChangeListener implements TextWatcher {
+        private Integer produkcja, popyt, dostepne, temp;
+        private ObslugaBazyDanych daniel;
+        private int position;
+
+        public TextChangeListener(Context context, int position) {
+            this.popyt = 0;
+            this.produkcja = 0;
+            this.position = position;
+            this.daniel = new ObslugaBazyDanych(context);
+
+            try {
+                this.temp = Integer.parseInt(daniel.execute("plan").get());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (!wartosciProdukcji[position].getText().toString().equals("")){
+                try {
+                    produkcja = Integer.parseInt(wartosciProdukcji[position].getText().toString());
+                }
+                catch (NumberFormatException e){
+                    produkcja = 0;
+                }
+            } else {
+                produkcja = 0;
+            }
+            if (!wartosciPopytu[position].getText().toString().equals("")) {
+                try {
+                    popyt = Integer.parseInt(wartosciPopytu[position].getText().toString());
+                }
+                catch (NumberFormatException e){
+                    popyt = 0;
+                }
+            } else {
+                popyt = 0;
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            dostepne = temp;
+            if(wartosciPopytu[position].getText().toString().equals("") && wartosciProdukcji[position].getText().toString().equals("")){
+                dostepne = temp;
+            }
+            else{
+                dostepne = dostepne + produkcja - popyt;
+            }
+            wartosciDostepne[position].setText(dostepne.toString());
+        }
     }
 }
