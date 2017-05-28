@@ -17,7 +17,11 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginStart="5dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -76,6 +80,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="40dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="40dp">
 
         <LinearLayout
@@ -121,8 +129,8 @@
                         android:id="@+id/edit_n_dostepne1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:hint="0" />
                 </TableRow>
 
@@ -160,8 +168,8 @@
                         android:id="@+id/edit_n_dostepne2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:hint="0" />
                 </TableRow>
 
@@ -199,8 +207,8 @@
                         android:id="@+id/edit_n_dostepne3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:hint="0" />
                 </TableRow>
 
@@ -238,8 +246,8 @@
                         android:id="@+id/edit_n_dostepne4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:hint="0" />
                 </TableRow>
 
@@ -277,8 +285,8 @@
                         android:id="@+id/edit_n_dostepne5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:hint="0" />
                 </TableRow>
 
@@ -316,8 +324,8 @@
                         android:id="@+id/edit_n_dostepne6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:hint="0" />
                 </TableRow>
 
@@ -355,8 +363,8 @@
                         android:id="@+id/edit_n_dostepne7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:hint="0" />
                 </TableRow>
 
@@ -394,8 +402,8 @@
                         android:id="@+id/edit_n_dostepne8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:hint="0" />
                 </TableRow>
 
@@ -433,8 +441,8 @@
                         android:id="@+id/edit_n_dostepne9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:hint="0" />
                 </TableRow>
 
@@ -472,8 +480,8 @@
                         android:id="@+id/edit_n_dostepne10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginStart="45dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:hint="0" />
                 </TableRow>
 
