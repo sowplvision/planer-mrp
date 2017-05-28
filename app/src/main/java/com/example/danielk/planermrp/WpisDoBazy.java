@@ -13,11 +13,13 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
@@ -28,7 +30,6 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
     private String[] materialy, polprodukty;
     private ListView materialyListView, polproduktyListView;
     private Adapter materialyAdapter, polproduktyAdapter;
-    private ObslugaBazyDanych insertMaterial, insertPolprodukt, insertProdukt, materials, halfproducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,32 +48,38 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
         polprodukt = (LinearLayout) findViewById(R.id.polprodukt);
         produkt = (LinearLayout) findViewById(R.id.produkt);
 
-        insertMaterial = new ObslugaBazyDanych(this);
-        insertPolprodukt = new ObslugaBazyDanych(this);
-        insertProdukt = new ObslugaBazyDanych(this);
-        materials = new ObslugaBazyDanych(this);
-        halfproducts = new ObslugaBazyDanych(this);
-
-        try {
-            String temp = materials.execute("materials").get();
-            materialy = temp.split("; ");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String temp = halfproducts.execute("halfproducts").get();
-            polprodukty = temp.split("; ");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
         materialyListView = (ListView) findViewById(R.id.materialyList);
         polproduktyListView = (ListView) findViewById(R.id.polproduktyList);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ObslugaBazyDanych materials = new ObslugaBazyDanych(getApplicationContext());
+                try {
+                    String temp = materials.execute("materials").get();
+                    materialy = temp.split("; ");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).run();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ObslugaBazyDanych halfproducts = new ObslugaBazyDanych(getApplicationContext());
+                try {
+                    String temp = halfproducts.execute("halfproducts").get();
+                    polprodukty = temp.split("; ");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).run();
     }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -127,6 +134,21 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
 
             nazwa.setHint("Nazwa półproduktu");
 
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    ObslugaBazyDanych materials = new ObslugaBazyDanych(getApplicationContext());
+                    try {
+                        String temp = materials.execute("materials").get();
+                        materialy = temp.split("; ");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).run();
+
             materialyAdapter = new Adapter(materialy);
             materialyListView.setAdapter(materialyAdapter);
             setListViewHeightBasedOnChildren(materialyListView);
@@ -143,6 +165,21 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
             partia = (EditText) findViewById(R.id.partiaProduktu);
 
             nazwa.setHint("Nazwa produktu");
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    ObslugaBazyDanych halfproducts = new ObslugaBazyDanych(getApplicationContext());
+                    try {
+                        String temp = halfproducts.execute("halfproducts").get();
+                        polprodukty = temp.split("; ");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).run();
 
             polproduktyAdapter = new Adapter(polprodukty);
             polproduktyListView.setAdapter(polproduktyAdapter);
@@ -182,7 +219,13 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
 
         price = price.replace('.', ',');
 
-        insertMaterial.execute("insert_material", name, details, time, quantity, partion, price);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ObslugaBazyDanych insertMaterial = new ObslugaBazyDanych(getApplicationContext());
+                insertMaterial.execute("insert_material", name, details, time, quantity, partion, price);
+            }
+        }).run();
     }
 
     public void wyslijPolprodukt(View view) {
@@ -192,7 +235,13 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
         quantity = ilosc.getText().toString();
         partion = partia.getText().toString();
 
-        insertPolprodukt.execute("insert_polprodukt", name, details, time, quantity, partion, price);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ObslugaBazyDanych insertPolprodukt = new ObslugaBazyDanych(getApplicationContext());
+                insertPolprodukt.execute("insert_polprodukt", name, details, time, quantity, partion);
+            }
+        }).run();
     }
 
     public void wyslijProdukt(View view) {
@@ -202,7 +251,13 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
         quantity = ilosc.getText().toString();
         partion = partia.getText().toString();
 
-        insertProdukt.execute("insert_produkt", name, details, time, quantity, partion, price);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ObslugaBazyDanych insertProdukt = new ObslugaBazyDanych(getApplicationContext());
+                insertProdukt.execute("insert_produkt", name, details, time, quantity, partion, price);
+            }
+        }).run();
     }
 
     public class Adapter extends BaseAdapter {
@@ -228,12 +283,19 @@ public class WpisDoBazy extends AppCompatActivity implements OnItemSelectedListe
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             convertView = getLayoutInflater().inflate(R.layout.list_checkbox_item, null);
 
-            CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.materialNazwa);
+            final CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.materialNazwa);
 
             checkBox.setText(items[position]);
+
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                }
+            });
 
             return convertView;
         }
