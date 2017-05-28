@@ -133,14 +133,14 @@ public class TworzeniePlanu extends AppCompatActivity{
     }
 
     private class TextChangeListener implements TextWatcher {
-        private Integer produkcja, popyt, dostepne, temp;
+        private Integer produkcja, popyt, dostepne;
         private int position;
 
         public TextChangeListener(int position) {
             this.popyt = 0;
             this.produkcja = 0;
             this.position = position;
-            this.temp = Integer.parseInt(wartosciDostepne[position].getText().toString());
+            this.dostepne = Integer.parseInt(wartosciDostepne[0].getText().toString());
         }
 
         @Override
@@ -149,38 +149,37 @@ public class TworzeniePlanu extends AppCompatActivity{
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (!wartosciProdukcji[position].getText().toString().equals("")){
-                try {
-                    produkcja = Integer.parseInt(wartosciProdukcji[position].getText().toString());
-                }
-                catch (NumberFormatException e){
-                    produkcja = 0;
-                }
-            } else {
-                produkcja = 0;
-            }
-            if (!wartosciPopytu[position].getText().toString().equals("")) {
-                try {
-                    popyt = Integer.parseInt(wartosciPopytu[position].getText().toString());
-                }
-                catch (NumberFormatException e){
-                    popyt = 0;
-                }
-            } else {
-                popyt = 0;
-            }
         }
 
         @Override
         public void afterTextChanged(Editable s) {
-            dostepne = temp;
-            if(wartosciPopytu[position].getText().toString().equals("") && wartosciProdukcji[position].getText().toString().equals("")){
-                dostepne = temp;
-            }
-            else{
-                dostepne = dostepne + produkcja - popyt;
+            if(position>0){
+                dostepne = Integer.parseInt(wartosciDostepne[position-1].getText().toString());
             }
             for(int i = position; i<10; i++){
+                wartosciDostepne[i].setText(dostepne.toString());
+                if (!wartosciProdukcji[i].getText().toString().equals("")){
+                    try {
+                        produkcja = Integer.parseInt(wartosciProdukcji[i].getText().toString());
+                    }
+                    catch (NumberFormatException e){
+                        produkcja = 0;
+                    }
+                } else {
+                    produkcja = 0;
+                }
+                if (!wartosciPopytu[i].getText().toString().equals("")) {
+                    try {
+                        popyt = Integer.parseInt(wartosciPopytu[i].getText().toString());
+                    }
+                    catch (NumberFormatException e){
+                        popyt = 0;
+                    }
+                } else {
+                    popyt = 0;
+                }
+
+                dostepne = dostepne + produkcja - popyt;
                 wartosciDostepne[i].setText(dostepne.toString());
             }
         }
