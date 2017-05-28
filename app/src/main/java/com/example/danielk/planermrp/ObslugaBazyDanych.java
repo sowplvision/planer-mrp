@@ -361,6 +361,70 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
             } catch (IOException e) {
             }
         }
+        if(operationType.equals("cena")){ //zapytanie o ilosc dostepnych szaf
+            // zapytanie dotyczylo tylko szaf z powodu malej ilosci czasu - w przyszlosci bedzie dynamicznie
+            try {
+                //adres skryptu
+                String loginURL = "http://v-ie.uek.krakow.pl/~s187086/cena.php";
+
+                //ustanowienie polaczenia
+                URL url = new URL(loginURL);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoInput(true);
+
+                //odbieranie odpowiedzi
+                InputStream inputStream = connection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,inputCharSet));
+
+                String result = "";
+                String line = "";
+
+                while ((line = bufferedReader.readLine())!=null){
+                    result+=line;
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                connection.disconnect();
+
+                return result;
+            } catch (MalformedURLException e) {
+            } catch (IOException e) {
+            }
+        }
+        if(operationType.equals("nazwa_produktu")){ //zapytanie o ilosc dostepnych szaf
+            // zapytanie dotyczylo tylko szaf z powodu malej ilosci czasu - w przyszlosci bedzie dynamicznie
+            try {
+                //adres skryptu
+                String loginURL = "http://v-ie.uek.krakow.pl/~s187086/nazwa_produktu.php";
+
+                //ustanowienie polaczenia
+                URL url = new URL(loginURL);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoInput(true);
+
+                //odbieranie odpowiedzi
+                InputStream inputStream = connection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,inputCharSet));
+
+                String result = "";
+                String line = "";
+
+                while ((line = bufferedReader.readLine())!=null){
+                    result+=line;
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                connection.disconnect();
+
+                return result;
+            } catch (MalformedURLException e) {
+            } catch (IOException e) {
+            }
+        }
         //odpowiedz domyslna
         return "Brak połączenia lub błąd skryptu.";
     }

@@ -26,6 +26,7 @@ public class TworzeniePlanu extends AppCompatActivity{
     private String wartosci[] = new String[10];
     private String wprodukcji[] = new String[10];
     private String wdostepne[] = new String[10];
+    private String cena, nazwaProduktu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,29 +101,71 @@ public class TworzeniePlanu extends AppCompatActivity{
             wprodukcji[i] = wartosciProdukcji[i].getText().toString();
             wdostepne[i] = wartosciDostepne[i].getText().toString();
         }
+
+        //pobierz cene produktu
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ObslugaBazyDanych obslugaBazyDanych = new ObslugaBazyDanych(getApplicationContext());
+
+                try {
+                    cena = obslugaBazyDanych.execute("cena").get();
+                    cena = cena.replace(",",".");
+                    cena = cena.substring(2); //postgresql przechowuje kwote razem z waluta (zł 0,00)
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).run();
+
+        //pobierz nazwe produktu
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ObslugaBazyDanych obslugaBazyDanych = new ObslugaBazyDanych(getApplicationContext());
+                try {
+                    nazwaProduktu = obslugaBazyDanych.execute("nazwa_produktu").get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).run();
+
         //symbol wiersza i kolumny w csv
         String nowyWiersz = "\n";
         String nowaKolumna = ",";
         String nowaTabela = ";";
 
-        //tworzenie tekstowo tabeli GHP
-        String tresc = "GHP" + nowyWiersz;
+        //tworzenie tekstowo tabeli GHP dla 10 dni dla produktu (obecnie jedynie dla szafy)
+        String tresc = "GHP" + nowaKolumna + nazwaProduktu + nowaKolumna;
+        tresc += nowaKolumna +"Cena za sztuke:" + nowaKolumna + cena + nowyWiersz;
         tresc += "Dzien:" + nowaKolumna;
         for(int i = 0; i<10; i++){
             tresc+= (i+1) + nowaKolumna;
         }
-        tresc +=nowyWiersz + "Przewidywany popyt:" + nowaKolumna;
+        tresc += nowaKolumna + nowaKolumna + "Podsumowanie" + nowaKolumna + "Wartosc: [zl]";
+        tresc += nowyWiersz + "Przewidywany popyt:" + nowaKolumna;
         for(int i = 0; i<10; i++){
             tresc+= wartosci[i] + nowaKolumna;
         }
-        tresc +=nowyWiersz + "Produkcja:" + nowaKolumna;
+        tresc += nowaKolumna + "Popyt:" + nowaKolumna + "=SUM(B3:K3)";
+        tresc += nowaKolumna + "=E1*N3";
+        tresc += nowyWiersz + "Produkcja:" + nowaKolumna;
         for(int i = 0; i<10; i++){
             tresc+= wprodukcji[i] + nowaKolumna;
         }
-        tresc +=nowyWiersz + "Dostepne:" + nowaKolumna;
-        for(int i = 0; i<10; i++){
-            tresc+= wdostepne[i] + nowaKolumna;
+        tresc += nowaKolumna + "Produkcja:" + nowaKolumna + "=SUM(B4:K4)";
+        tresc += nowaKolumna + "=E1*N4";
+        tresc += nowyWiersz + "Dostepne:" + nowaKolumna;
+        for(int i = 0; i<10; i++) {
+            tresc += wdostepne[i] + nowaKolumna;
         }
+        tresc += nowaKolumna + "Dostepne" + nowaKolumna + "=K5";
+        tresc += nowaKolumna + "=E1*N5" + nowyWiersz;
 
         //zapisywanie utworzonej tresci do pliku w pamieci wewnetrznej/PlanerMRP/plan.csv
         ZapisywaniePlanu zapisywaniePlanu = new ZapisywaniePlanu(tresc,this);
