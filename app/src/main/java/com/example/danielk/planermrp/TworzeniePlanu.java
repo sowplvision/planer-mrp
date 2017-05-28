@@ -1,6 +1,5 @@
 package com.example.danielk.planermrp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+/**
+ *
+ * Klasa ktorej głownym przeznaczeniem jest tworzenie nowego planu produkcji na podstawie pobieranych
+ *
+ */
+
 import java.util.concurrent.ExecutionException;
 
 public class TworzeniePlanu extends AppCompatActivity{
@@ -26,10 +32,12 @@ public class TworzeniePlanu extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tworzenie_planu);
 
+        //tablica pol
         wartosciPopytu = new EditText[10];
         wartosciProdukcji = new EditText[10];
         wartosciDostepne = new TextView[10];
 
+        //powiazanie pol z elementami layoutu
         wartosciPopytu[0] = (EditText)findViewById(R.id.edit_n_popyt1);
         wartosciPopytu[1] = (EditText)findViewById(R.id.edit_n_popyt2);
         wartosciPopytu[2] = (EditText)findViewById(R.id.edit_n_popyt3);
@@ -63,6 +71,7 @@ public class TworzeniePlanu extends AppCompatActivity{
         wartosciDostepne[8] = (TextView)findViewById(R.id.edit_n_dostepne9);
         wartosciDostepne[9] = (TextView)findViewById(R.id.edit_n_dostepne10);
 
+        //pobranie wstepnych danych o ilosci znajdujacej sie na stanie
         ObslugaBazyDanych daniel = new ObslugaBazyDanych(this);
 
         try {
@@ -72,46 +81,25 @@ public class TworzeniePlanu extends AppCompatActivity{
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
         for(int i=0; i<10; i++) {
+            //ustawienie wstepnych wartosci dostepnych produktow
             wartosciDostepne[i].setText(naStanie.toString());
+
+            //podlaczenie nasluchiwaczy do kazdego z pol tekstowych
             wartosciProdukcji[i].addTextChangedListener(new TextChangeListener(i));
             wartosciPopytu[i].addTextChangedListener(new TextChangeListener(i));
         }
     }
 
     public void stworzPlan(View view) {
-        wartosci[0] = wartosciPopytu[0].getText().toString(); //pobiera wartość popytu...
-        wartosci[1] = wartosciPopytu[1].getText().toString();
-        wartosci[2] = wartosciPopytu[2].getText().toString();
-        wartosci[3] = wartosciPopytu[3].getText().toString();
-        wartosci[4] = wartosciPopytu[4].getText().toString();
-        wartosci[5] = wartosciPopytu[5].getText().toString();
-        wartosci[6] = wartosciPopytu[6].getText().toString();
-        wartosci[7] = wartosciPopytu[7].getText().toString();
-        wartosci[8] = wartosciPopytu[8].getText().toString();
-        wartosci[9] = wartosciPopytu[9].getText().toString(); // .
-
-        wprodukcji[0] = wartosciProdukcji[0].getText().toString(); // pobiera wartość produkcji...
-        wprodukcji[1] = wartosciProdukcji[1].getText().toString();
-        wprodukcji[2] = wartosciProdukcji[2].getText().toString();
-        wprodukcji[3] = wartosciProdukcji[3].getText().toString();
-        wprodukcji[4] = wartosciProdukcji[4].getText().toString();
-        wprodukcji[5] = wartosciProdukcji[5].getText().toString();
-        wprodukcji[6] = wartosciProdukcji[6].getText().toString();
-        wprodukcji[7] = wartosciProdukcji[7].getText().toString();
-        wprodukcji[8] = wartosciProdukcji[8].getText().toString();
-        wprodukcji[9] = wartosciProdukcji[9].getText().toString(); // .
-
-        wdostepne[0] = wartosciDostepne[0].getText().toString(); // pobiera wartosc dostepnego towaru...
-        wdostepne[1] = wartosciDostepne[1].getText().toString();
-        wdostepne[2] = wartosciDostepne[2].getText().toString();
-        wdostepne[3] = wartosciDostepne[3].getText().toString();
-        wdostepne[4] = wartosciDostepne[4].getText().toString();
-        wdostepne[5] = wartosciDostepne[5].getText().toString();
-        wdostepne[6] = wartosciDostepne[6].getText().toString();
-        wdostepne[7] = wartosciDostepne[7].getText().toString();
-        wdostepne[8] = wartosciDostepne[8].getText().toString();
-        wdostepne[9] = wartosciDostepne[9].getText().toString();
+        //obsluga przycisku
+        for(int i=0; i<10; i++){
+            //pobranie wartosci z pol do odpowiedniej tablicy wartosci
+            wartosci[i] = wartosciPopytu[i].getText().toString();
+            wprodukcji[i] = wartosciProdukcji[i].getText().toString();
+            wdostepne[i] = wartosciDostepne[i].getText().toString();
+        }
     }
 
     //Menu ustawien
@@ -121,6 +109,7 @@ public class TworzeniePlanu extends AppCompatActivity{
         return true;
     }
 
+    //zachowanie menu przy wybraniu jakiejs opcji
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -132,10 +121,12 @@ public class TworzeniePlanu extends AppCompatActivity{
         return true;
     }
 
+    //klasa nasluchujaca zmiany tekstu w polach
     private class TextChangeListener implements TextWatcher {
         private Integer produkcja, popyt, dostepne;
         private int position;
 
+        //konstruktor domyslny
         public TextChangeListener(int position) {
             this.popyt = 0;
             this.produkcja = 0;
@@ -153,33 +144,40 @@ public class TworzeniePlanu extends AppCompatActivity{
 
         @Override
         public void afterTextChanged(Editable s) {
+            //jezeli pozycja jest wieksza od 0(np dzien 2) ilosc dostepna pobierana jest z dnia poprzedniego
             if(position>0){
                 dostepne = Integer.parseInt(wartosciDostepne[position-1].getText().toString());
             }
+
+            //
             for(int i = position; i<10; i++){
+                //najpierw ustawiana jest wartosc dostepnego produktu w polu
                 wartosciDostepne[i].setText(dostepne.toString());
+
                 if (!wartosciProdukcji[i].getText().toString().equals("")){
-                    try {
+                    try { //jezeli pole nie jest puste pobierz wartosc z pola
                         produkcja = Integer.parseInt(wartosciProdukcji[i].getText().toString());
                     }
                     catch (NumberFormatException e){
                         produkcja = 0;
                     }
-                } else {
+                } else { //jezeli jest puste wartosc domyslna produkcji wynosi 0
                     produkcja = 0;
                 }
                 if (!wartosciPopytu[i].getText().toString().equals("")) {
-                    try {
+                    try { //jezeli pole nie jest poste pobierz wartosc z pola
                         popyt = Integer.parseInt(wartosciPopytu[i].getText().toString());
                     }
                     catch (NumberFormatException e){
                         popyt = 0;
                     }
-                } else {
+                } else { //jezeli pole jest puste domyslna wartosc popytu wynosi 0
                     popyt = 0;
                 }
 
+                //algorytm obliczania ilosci dostepnego produktu w wybranym dniu
                 dostepne = dostepne + produkcja - popyt;
+                //ustawianie wartosci wyliczonej do pola
                 wartosciDostepne[i].setText(dostepne.toString());
             }
         }
