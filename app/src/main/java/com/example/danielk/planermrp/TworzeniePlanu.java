@@ -74,8 +74,8 @@ public class TworzeniePlanu extends AppCompatActivity{
         }
         for(int i=0; i<10; i++) {
             wartosciDostepne[i].setText(naStanie.toString());
-            wartosciProdukcji[i].addTextChangedListener(new TextChangeListener(this,i));
-            wartosciPopytu[i].addTextChangedListener(new TextChangeListener(this,i));
+            wartosciProdukcji[i].addTextChangedListener(new TextChangeListener(i));
+            wartosciPopytu[i].addTextChangedListener(new TextChangeListener(i));
         }
     }
 
@@ -134,22 +134,13 @@ public class TworzeniePlanu extends AppCompatActivity{
 
     private class TextChangeListener implements TextWatcher {
         private Integer produkcja, popyt, dostepne, temp;
-        private ObslugaBazyDanych daniel;
         private int position;
 
-        public TextChangeListener(Context context, int position) {
+        public TextChangeListener(int position) {
             this.popyt = 0;
             this.produkcja = 0;
             this.position = position;
-            this.daniel = new ObslugaBazyDanych(context);
-
-            try {
-                this.temp = Integer.parseInt(daniel.execute("plan").get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
+            this.temp = Integer.parseInt(wartosciDostepne[position].getText().toString());
         }
 
         @Override
@@ -189,7 +180,9 @@ public class TworzeniePlanu extends AppCompatActivity{
             else{
                 dostepne = dostepne + produkcja - popyt;
             }
-            wartosciDostepne[position].setText(dostepne.toString());
+            for(int i = position; i<10; i++){
+                wartosciDostepne[i].setText(dostepne.toString());
+            }
         }
     }
 }
