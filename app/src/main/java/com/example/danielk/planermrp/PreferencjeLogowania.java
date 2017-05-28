@@ -9,6 +9,12 @@ import android.preference.CheckBoxPreference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ *
+ * Klasa zawierająca preferencje widoczne na ekranie Logowania, można ją nieco rozbudować
+ *
+ */
+
 public class PreferencjeLogowania extends AppCompatActivity{
 
     @Override
@@ -17,6 +23,7 @@ public class PreferencjeLogowania extends AppCompatActivity{
 
         setContentView(R.layout.activity_preferencje_logowania);
 
+        //tworzenie preferencji
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -35,6 +42,7 @@ public class PreferencjeLogowania extends AppCompatActivity{
 
             addPreferencesFromResource(R.xml.login_settings);
 
+            //odczytywanie zapisanych ustawień
             zapisz = (CheckBoxPreference) findPreference("pref_zapisz");
 
             daneLogowania = getActivity().getSharedPreferences("daneLogowania", Context.MODE_PRIVATE);
@@ -45,6 +53,8 @@ public class PreferencjeLogowania extends AppCompatActivity{
         @Override
         public void onStop() {
             super.onStop();
+
+            //zapisywanie zmian w ustawieniach w momencie opuszczania preferencji
             SharedPreferences.Editor editor = daneLogowania.edit();
 
             editor.putBoolean("zapisz",zapisz.isChecked());

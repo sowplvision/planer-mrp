@@ -10,6 +10,12 @@ import android.preference.EditTextPreference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ *
+ * Klasa zawierająca rozszerzone preferencje, warta rozbudowania poprzez activity_preferencje.xml
+ *
+ **/
+
 public class Preferencje extends AppCompatActivity {
 
     @Override
@@ -17,6 +23,7 @@ public class Preferencje extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferencje);
 
+        //utworzenie preferencji
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -37,6 +44,7 @@ public class Preferencje extends AppCompatActivity {
 
             addPreferencesFromResource(R.xml.settings);
 
+            //pobieranie preferencji jezeli istnieja juz jakies i przysywanie ich do pol
             daneLogowania = getActivity().getSharedPreferences("daneLogowania",Context.MODE_PRIVATE);
 
             oldLogin = daneLogowania.getString("login","");
@@ -55,6 +63,7 @@ public class Preferencje extends AppCompatActivity {
         public void onStop() {
             super.onStop();
 
+            //w momencie opuszczania preferencji zapisywanie zmian (jeśli zaszly)
             SharedPreferences.Editor editor = daneLogowania.edit();
 
             if(!oldLogin.equals(login.getText())){

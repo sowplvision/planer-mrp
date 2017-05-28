@@ -10,6 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+/**
+ *
+ * Klasa zawierająca aktywność logowania się do bazy danych.
+ * Wykorzystuje stworzony własnoręcznie (jako że android nie wspiera programowo połączeń z zewnętrzna bazą danych)
+ * protokół połączeniowy ObsługaBazyDanych w celu połączenia się z bazą oraz sprawdzenia danych użytkownika
+ *
+ **/
+
 public class Logowanie extends AppCompatActivity {
     private EditText user, password;
     private SharedPreferences daneLogowania;
@@ -62,12 +70,14 @@ public class Logowanie extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //utworzenie menu PreferencjiLogowania
         getMenuInflater().inflate(R.menu.settings, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //zachowanie się programu w przypadku wybrania jakieś opcji z menu
         switch (item.getItemId()){
             case R.id.login_settings:
                 Intent intent = new Intent(this, PreferencjeLogowania.class);
