@@ -1,8 +1,88 @@
-<html>
-  <title>Planer MRP</title>
+<!DOCTYPE html>
+<html lang="pl">
+
+  	<head>
+		<!-- <meta charset="UTF-8"> -->
+		<meta charset="ISO-8859-2">
+		<title>Planer MRP</title>
+
+		<style>
+			#container
+			{
+				width: 1000px;
+				margin-left:auto;
+				margin-right:auto;
+			}
+			#title
+			{
+				color: black;
+				background-color: darkgray;	
+				text-align: center;
+				padding: 15px;
+			}
+			#description
+			{
+				float: left;
+				background-color: orange;
+				width: 400px;
+				padding: 10px;
+				min-height: 680px;
+				
+			}
+			#documentation
+			{
+				float: left;
+				background-color: yellow;
+				padding: 10px;
+				padding-left: 20px;
+				min-height: 680px;	
+			}
+			#footer
+			{
+				clear: both;
+				background-color: lightgray;
+			}
+		</style>
+	</head>  
   
-  <body>
-    <h3>Projekt zaliczeniowy z programowania systemów mobilnych</h3>
-    <a href="https://github.com/sowplvision/planer-mrp">Link do repozytorium.</a>
-  </body>
+	<body>
+  
+		<div id="container">
+		<div id="title"> 
+			<font size="1"><h1>Projekt zaliczeniowy z programowania systemów mobilnych</h1>
+</font> 
+			<font size="4"><h2>Planer MRP</h2></font>
+		</div>
+			
+		<div id="description">
+			<h3>OPIS</h3>
+			<p>Aplikacja dla systemu Android która pozwoli planistom firmy meblowej:<br /><br />
+
+			-Przygotować plan produkcji wg algorytmu MRP uwzględniając czas potrzebny na wyprodukowanie produktu.<br />
+
+			-Ocenić koszt oraz czas potrzebny do wyprodukowania wg przygotowanego planu przez aplikacje.<br />
+
+			-Pobrać z bazy danych informacje o produktach które się tam znajdują oraz materiałach z których się składa wybrany produkt.<br />
+
+			-Dodawać nowe produkty do bazy danych które składać się będą z wybieranych materiałów a ich koszt będzie sugerowany na podstawie kosztu pojedynczego materiału.<br />
+
+			-Aplikacja będzie miała wspomagać decyzje dotyczące ceny produktu (obliczany będzie koszt materiałów potrzebnych do produkcji) oraz daty rozpoczęcia produkcji (wg czasu potrzebnego do wyprodukowania)<br />
+
+			-Stworzyć plan oraz zapisać go w formie pliku Excel'owskich na urządzeniu mobilnym.<br />
+
+</p>
+		</div>
+
+		<div id="documentation">
+			<h3>DOKUMENTACJA</h3>
+		</div>
+		
+		<div id="footer">	
+ 			 <p>Autorzy: Daniel Kucharczyk<br></p>
+			 <p style="text-indent: 1.5cm">Mariusz Nowak</p>
+ 			 <p>Link do repozytorium: <a href="https://github.com/sowplvision/planer-mrp" onclick="this.target='_blank'">REPOZYTORIUM</a>.</p>
+		</div>
+		</div> 
+	</body>
+
 </html>
