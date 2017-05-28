@@ -1,0 +1,115 @@
+drop table if exists uzytkownicy;
+drop table if exists sklad_produktow cascade;
+drop table if exists sklad_polproduktow cascade;
+drop table if exists produkty cascade;
+drop table if exists polprodukty cascade;
+drop table if exists materialy cascade;
+
+
+
+create table if not exists uzytkownicy(
+id_uzytkownika serial,
+login varchar(30),
+haslo varchar(30) not null,
+primary key(id_uzytkownika, login));
+
+
+
+insert into uzytkownicy(login, haslo) values('admin', 'test');
+
+
+
+create table if not exists materialy(
+id_materialu serial primary key,
+nazwa varchar(50) not null,
+opis varchar(255),
+czas_montazu int4 not null,
+ilosc_na_stanie int4 not null check (ilosc_na_stanie>=0),
+wielkosc_partii int4 not null check (wielkosc_partii>0),
+cena_za_sztuke money not null);
+
+
+
+insert into materialy(nazwa, opis, czas_montazu, ilosc_na_stanie, wielkosc_partii, cena_za_sztuke) values ('Płyta drewniana', 'Służy do wykonywania ścian bocznych, drzwi, półek itp.','1','30','10','49,99');
+
+insert into materialy(nazwa, opis, czas_montazu, ilosc_na_stanie, wielkosc_partii, cena_za_sztuke) values ('Zawias do drzwi', 'Służy do zawieszania drzwi','3','50','40','9,99');
+
+insert into materialy(nazwa, opis, czas_montazu, ilosc_na_stanie, wielkosc_partii, cena_za_sztuke) values ('Uchwyt do drzwi', '','2','10','30','11,99');
+
+
+
+create table if not exists polprodukty(
+id_polproduktu serial primary key,
+nazwa varchar(50) not null,
+opis varchar(255),
+czas_montazu int4 not null,
+ilosc_na_stanie int4 not null check (ilosc_na_stanie>=0),
+wielkosc_partii int4 not null check (wielkosc_partii>0),
+cena_za_sztuke money);
+
+
+
+insert into polprodukty(nazwa, opis, czas_montazu, ilosc_na_stanie, wielkosc_partii) values ('Drzwi','Składają się z zawiasów oraz płyty drewnianej', '1','18','12');
+
+insert into polprodukty(nazwa, opis, czas_montazu, ilosc_na_stanie, wielkosc_partii) values ('Półka','Składa się fragmentu płyty', '1','25','24');
+
+insert into polprodukty(nazwa, opis, czas_montazu, ilosc_na_stanie, wielkosc_partii) values ('Sciana boczna','Pojedyncza sciana boczna/przednia/tylnia', '1','10','20');
+
+
+
+create table if not exists produkty(
+id_produktu serial primary key,
+nazwa varchar(50) not null,
+opis varchar(255),
+czas_montazu int4 not null,
+ilosc_na_stanie int4 not null check (ilosc_na_stanie>=0),
+wielkosc_partii int4 not null check (wielkosc_partii>0),
+cena_za_sztuke money);
+
+
+
+insert into produkty(nazwa, opis, czas_montazu, ilosc_na_stanie, wielkosc_partii) values ('Szafa dwudrzwiowa', 'Standardowa szafa dwudrzwiowa z czterema półkami','3','25','10');
+
+
+create table if not exists sklad_polproduktow(
+id_polproduktu int8 not null,
+id_materialu int8 not null,
+ilosc_materialu float4 not null check (ilosc_materialu>=0),
+cena_materialu money,
+primary key (id_polproduktu, id_materialu),
+constraint spp foreign key (id_polproduktu) references polprodukty (id_polproduktu) on delete cascade on update cascade,
+constraint spm foreign key (id_materialu) references materialy (id_materialu) on delete cascade on update cascade);
+
+
+insert into sklad_polproduktow (id_polproduktu, id_materialu, ilosc_materialu, cena_materialu) values ('1','1','1',(select cena_za_sztuke from materialy where id_materialu='1')*1);
+
+insert into sklad_polproduktow (id_polproduktu, id_materialu, ilosc_materialu, cena_materialu) values ('1','2','4',(select cena_za_sztuke from materialy where id_materialu='2')*4);
+
+insert into sklad_polproduktow (id_polproduktu, id_materialu, ilosc_materialu, cena_materialu) values ('1','3','2',(select cena_za_sztuke from materialy where id_materialu='3')*2);
+
+insert into sklad_polproduktow (id_polproduktu, id_materialu, ilosc_materialu, cena_materialu) values ('2','1','0.25',(select cena_za_sztuke from materialy where id_materialu='1')*0.25);
+
+insert into sklad_polproduktow (id_polproduktu, id_materialu, ilosc_materialu, cena_materialu) values ('3','1','0.5',(select cena_za_sztuke from materialy where id_materialu='1')*0.5);
+
+update polprodukty set cena_za_sztuke = (select sum(sklad_polproduktow.cena_materialu)from sklad_polproduktow where polprodukty.id_polproduktu = sklad_polproduktow.id_polproduktu);
+
+
+
+create table if not exists sklad_produktow(
+id_produktu int8 not null,
+id_polproduktu int8 not null,
+ilosc_polproduktu float4 not null check (ilosc_polproduktu>=0),
+cena_polproduktu money,
+primary key (id_produktu, id_polproduktu),
+constraint spd foreign key (id_produktu) references produkty (id_produktu) on delete cascade on update cascade,
+constraint spl foreign key (id_polproduktu) references polprodukty (id_polproduktu) on delete cascade on update cascade);
+
+
+
+insert into sklad_produktow(id_produktu, id_polproduktu, ilosc_polproduktu, cena_polproduktu) values ('1','1','1',(select cena_za_sztuke from polprodukty where id_polproduktu='1'));
+
+insert into sklad_produktow(id_produktu, id_polproduktu, ilosc_polproduktu,cena_polproduktu) values ('1','2','4',(select cena_za_sztuke from materialy where id_materialu='2')*4);
+
+insert into sklad_produktow(id_produktu, id_polproduktu, ilosc_polproduktu, cena_polproduktu) values ('1','3','6',(select cena_za_sztuke from materialy where id_materialu='3')*6);
+
+update produkty set cena_za_sztuke = (select sum(sklad_produktow.cena_polproduktu)from sklad_produktow where produkty.id_produktu = sklad_produktow.id_produktu);
