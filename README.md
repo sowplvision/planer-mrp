@@ -21,36 +21,37 @@ Aplikacja, która pozwala:
 # Klasy
 
 ## Panel główny
-   - W panelu głownym aplikacji użytkownik decyduje co chciałby zrobić w trakcie jej działania. Z niej może przejść do stworzenia nowego planu produkcji. Może dodać nowy materiał, półprodkt lub produkt oraz wyświetlić informacje.
+<br/>W panelu głownym aplikacji użytkownik decyduje co chciałby zrobić w trakcie jej działania. Z niej może przejść do stworzenia nowego planu produkcji. Może dodać nowy materiał, półprodkt lub produkt oraz wyświetlić informacje.
 
 ## Tworzenie planu
-   - To właśnie tutaj użytkownik może stworzyć nowy plan działania. Do poszczególnych tabel może wpisać aktualny popyt, czy produkcję. Dostępny towar pobierany jest z bazy danych. Oprócz tego użytkownik ma możliwość stworzenia planu, co za tym idzie, zapisania go na telefonie w formacie csv.
+<br/>To właśnie tutaj użytkownik może stworzyć nowy plan działania. Do poszczególnych tabel może wpisać aktualny popyt, czy produkcję. Dostępny towar pobierany jest z bazy danych. Oprócz tego użytkownik ma możliwość stworzenia planu, co za tym idzie, zapisania go na telefonie w formacie csv.
 
 ## Zapisywanie planu
-   - Klasa związana z powyższą. Dzięki niej, można zapisać stworzony plan do pliku o rozszerzeniu csv.
+<br/>Klasa związana z powyższą. Dzięki niej, można zapisać stworzony plan do pliku o rozszerzeniu csv.
 
 ## Wpis do bazy
-   - Właśnie tutaj użytkownik może dodać swój produkt, półprodukt lub materiał.
+<br/>Właśnie tutaj użytkownik może dodać swój produkt, półprodukt lub materiał.
 
 ## Obsługa bazy danych
-   - Protokół obsługujący połączenie z baza danych PostGreSQL na serwerze v-ie.uek.krakow.pl.
+<br/>Protokół obsługujący połączenie z baza danych PostGreSQL na serwerze v-ie.uek.krakow.pl.
 
 ## Logowanie
-   - Klasa zawierająca aktywność logowania się do bazy danych. Protokół połączeniowy ObsługaBazyDanych w celu połączenia się z bazą oraz sprawdzenia danych użytkownika.
+<br/>Klasa zawierająca aktywność logowania się do bazy danych. Protokół połączeniowy ObsługaBazyDanych w celu połączenia się z bazą oraz sprawdzenia danych użytkownika.
 
 ## Preferencje logowania:
-   - Zawiera preferencje dotyczące logowania.
+<br/>Zawiera preferencje dotyczące logowania.
 
 ## Preferencje:
-   - Ustawienia ogólne.
+<br/>Ustawienia ogólne.
 
 ## Informacje:
-   - Zawiera opis aplikacji, wersje, wymagania oraz nazwiska autorów.
+<br/>Zawiera opis aplikacji, wersje, wymagania oraz nazwiska autorów.
 
 # Autorzy 
 Aplikacja wykonana przez studentów III roku, Informatyki Stosowanej z grupy KrDZIs3011Io.
 
-- Daniel Kucharczyk 187086
++ Daniel Kucharczyk 187086
 
-- Mariusz Nowak 187617
++ Mariusz Nowak 187617<br/>
 
+Projekt wzorowany na [PlanerMRP](https://docs.google.com/spreadsheets/d/1lloSTbCQ_RQ3E-4xb8cPCVxpcn3NL7BBVvsBuMYLLQA/edit?usp=sharing)
