@@ -1,4 +1,4 @@
-# PlanerMRP
+## PlanerMRP
 Jest to aplikacja na system Android której celem jest symulacja planowania produkcji.
 Planowanie to ma przede wszystkim uwgzledniać czas potrzebny na wyprodukowanie produktu na podstawie algorytmu MRP 
 oraz oceniać koszta materiałów.
@@ -6,18 +6,17 @@ oraz oceniać koszta materiałów.
 # Funkcje
 Aplikacja, która pozwala:
 
--Przygotować plan produkcji wg algorytmu MRP uwzględniając czas potrzebny na wyprodukowanie produktu.
+- Przygotować plan produkcji wg algorytmu MRP uwzględniając czas potrzebny na wyprodukowanie produktu.
 
--Ocenić koszt oraz czas potrzebny do wyprodukowania wg przygotowanego planu przez aplikacje.
+- Ocenić koszt oraz czas potrzebny do wyprodukowania wg przygotowanego planu przez aplikacje.
 
--Pobrać z bazy danych informacje o produktach które się tam znajdują oraz materiałach z których się składa wybrany produkt.
+- Pobrać z bazy danych informacje o produktach które się tam znajdują oraz materiałach z których się składa wybrany produkt.
 
--Dodawać nowe produkty do bazy danych które składać się będą z wybieranych materiałów a ich koszt będzie sugerowany na podstawie 
-kosztu pojedynczego materiału.
+- Dodawać nowe produkty do bazy danych które składać się będą z wybieranych materiałów a ich koszt będzie sugerowany na podstawie kosztu pojedynczego materiału.
 
--Aplikacja będzie miała wspomagać decyzje dotyczące ceny produktu (obliczany będzie koszt materiałów potrzebnych do produkcji) oraz daty rozpoczęcia produkcji (wg czasu potrzebnego do wyprodukowania)
+- Aplikacja będzie miała wspomagać decyzje dotyczące ceny produktu (obliczany będzie koszt materiałów potrzebnych do produkcji) oraz daty rozpoczęcia produkcji (wg czasu potrzebnego do wyprodukowania)
 
--Stworzyć plan oraz zapisać go w formie pliku Excel'owskich na urządzeniu mobilnym.
+- Stworzyć plan oraz zapisać go w formie pliku Excel'owskich na urządzeniu mobilnym.
 
 ## Panel główny
 W panelu głownym aplikacji użytkownik decyduje co chciałby zrobić w trakcie jej działania. Z niej może przejść do stworzenia nowego planu produkcji. Może dodać nowy materiał, półprodkt lub produkt oraz wyświetlić informacje.
