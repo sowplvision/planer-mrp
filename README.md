@@ -20,7 +20,7 @@ Aplikacja, która pozwala:
 
 # Klasy
 
-+ Panel główny
+ ##Panel główny
    - W panelu głownym aplikacji użytkownik decyduje co chciałby zrobić w trakcie jej działania. Z niej może przejść do stworzenia nowego planu produkcji. Może dodać nowy materiał, półprodkt lub produkt oraz wyświetlić informacje.
 
 + Tworzenie planu
