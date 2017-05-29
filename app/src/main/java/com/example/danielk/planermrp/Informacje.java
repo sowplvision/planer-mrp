@@ -6,7 +6,7 @@ import android.os.Bundle;
 /**
  *
  * Klasa zwierająca pojedyńczą aktywność layoutu activity_informacje
- * Zawiera informacje o programie, wersji, tworcach oraz celu powstawania tego oprogramowania
+ * Zawiera informacje o programie, wersji, tworcach oraz celu powstawania tego oprogramowania.
  *
  **/
 

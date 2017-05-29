@@ -21,6 +21,10 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
+/*
+ * Klasa obsługująca plan i zapisująca go do pliku na urządzeniu mobilnym.
+ */
+
 public class TworzeniePlanu extends AppCompatActivity{
     private Integer naStanie;
     private EditText[] wartosciPopytu, wartosciProdukcji;

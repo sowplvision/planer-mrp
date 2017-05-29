@@ -17,11 +17,10 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
+ * Protokół obsługujący połączenie z baza danych PostGreSQL na serwerze v-ie.uek.krakow.pl.
  *
- * Created by Daniel K on 2017-05-18.
- * Protokół obsługujący połączenie z baza danych PostGreSQL na serwerze v-ie.uek.krakow.pl
  * Mechanizm ten wykorzystuje metody klasy AsyncTask<> w wykonywania zadań w tle oraz reagowania
- * na stan w jakim się znajdują (przed/po wykonaniu)
+ * na stan w jakim się znajdują (przed/po wykonaniu).
  * Mechanizmy tutaj wymagaly tez stworzenia dosyc sporego zaplecza BackEndowego ktore zamiescilem
  * w repozytorium GitHuba jako ServerBackEnd
  *

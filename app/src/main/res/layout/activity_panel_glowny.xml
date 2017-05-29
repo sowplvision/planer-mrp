@@ -7,16 +7,22 @@
     tools:context="com.example.danielk.planermrp.PanelGlowny">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="450dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
+        android:weightSum="1"
+        tools:layout_editor_absoluteX="10dp"
         tools:layout_editor_absoluteY="8dp">
 
         <TextView
             android:id="@+id/welcomeLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="@string/powitanie"
             android:textSize="24sp" />
 
@@ -24,6 +30,9 @@
             android:id="@+id/mainScreenLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:text="@string/ekran_glowny"
             android:textSize="16sp" />
 
@@ -31,6 +40,7 @@
             android:id="@+id/stworzPlan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0.25"
             android:onClick="stworzPlan"
             android:text="@string/stworz_plan" />
 
@@ -38,6 +48,7 @@
             android:id="@+id/wpisDoBazy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0.25"
             android:onClick="wpisDoBazy"
             android:text="@string/wpis_do_bazy" />
 
@@ -45,8 +56,22 @@
             android:id="@+id/informacje"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0.25"
             android:onClick="informacje"
             android:text="@string/informacje" />
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/opis_przyciskow"
+        android:layout_width="194dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white"
+        android:elevation="0dp"
+        android:text="@string/opis_przyciskow"
+        android:textAlignment="center"
+        android:layout_marginBottom="33dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

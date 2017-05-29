@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 
 /**
  *
- * Klasa zawierająca rozszerzone preferencje, warta rozbudowania poprzez activity_preferencje.xml
+ * Klasa zawierająca rozszerzone preferencje.
  *
  **/
 

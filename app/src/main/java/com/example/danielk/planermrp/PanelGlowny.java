@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  *
- * Klasa bedąca menu głownym aplikacji gdzie użytkownik decyduje co chciałby zrobić w trakcie jej działania
- * Klasa wymaga zmiany wyglądu (GUI) i jakiegoś sensownego doboru kolorów (nowego AppTheme)
- * Użytkownik po zalogowaniu trafia wlasnie tutaj gdzie podejmuje akcje, zmienia sie takze wyglad Ustawień
- * Wykorzystywany jest drugi schemat Preferencji, tutaj można także dobudowywać nowe funkcjonalności
+ * Klasa bedąca menu głownym aplikacji gdzie użytkownik decyduje co chciałby zrobić w trakcie jej działania.
+ * Użytkownik po zalogowaniu trafia wlasnie tutaj gdzie podejmuje akcje, zmienia sie takze wyglad Ustawień.
+ * Wykorzystywany jest drugi schemat Preferencji.
  *
  **/
 
@@ -59,5 +59,9 @@ public class PanelGlowny extends AppCompatActivity {
         //obsluga przycisku i nowa aktywnosc
         Intent intent = new Intent(this, Informacje.class);
         startActivity(intent);
+    }
+    public void toastOpis(View view) {
+        //podpowiedzi do przycisków
+        Toast.makeText(this, "Stwórz Plan - zaprojektuj nowy plan produkcji wybranego produktu\nDodaj Przedmiot - dodaj nowy materiał, półprodukt, produkt do bazy danych", Toast.LENGTH_LONG).show();
     }
 }

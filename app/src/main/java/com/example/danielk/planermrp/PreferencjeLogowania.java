@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 
 /**
  *
- * Klasa zawierająca preferencje widoczne na ekranie Logowania, można ją nieco rozbudować
+ * Klasa zawierająca preferencje widoczne na ekranie Logowania.
  *
  */
 
