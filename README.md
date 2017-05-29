@@ -20,13 +20,13 @@ Aplikacja, która pozwala:
 
 # Klasy
 
-- Panel główny:
+- Panel główny\n
 W panelu głownym aplikacji użytkownik decyduje co chciałby zrobić w trakcie jej działania. Z niej może przejść do stworzenia nowego planu produkcji. Może dodać nowy materiał, półprodkt lub produkt oraz wyświetlić informacje.
 
-- Tworzenie planu:
+- Tworzenie planu\n
 To właśnie tutaj użytkownik może stworzyć nowy plan działania. Do poszczególnych tabel może wpisać aktualny popyt, czy produkcję. Dostępny towar pobierany jest z bazy danych. Oprócz tego użytkownik ma możliwość stworzenia planu, co za tym idzie, zapisania go na telefonie w formacie csv.
 
-- Zapisywanie planu:
+- Zapisywanie planu\n
 Klasa związana z powyższą. Dzięki niej, można zapisać stworzony plan do pliku o rozszerzeniu csv.
 
 - Wpis do bazy:
