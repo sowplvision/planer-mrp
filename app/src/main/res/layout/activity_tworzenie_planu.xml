@@ -500,6 +500,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="11dp"
         android:layout_marginRight="11dp"
+        android:backgroundTint="#9ACD32"
         android:onClick="stworzPlan"
         android:text="@string/stw_rz_plan" />
 

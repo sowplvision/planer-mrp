@@ -194,6 +194,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:backgroundTint="#9ACD32"
                     android:onClick="wyslijPolprodukt"
                     android:text="@string/dodaj_wpis" />
             </LinearLayout>
@@ -266,6 +267,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:backgroundTint="#9ACD32"
                     android:onClick="wyslijProdukt"
                     android:text="@string/dodaj_wpis" />
             </LinearLayout>
