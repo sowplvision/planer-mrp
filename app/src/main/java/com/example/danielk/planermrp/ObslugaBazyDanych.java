@@ -361,7 +361,7 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
             } catch (IOException e) {
             }
         }
-        if(operationType.equals("cena")){ //zapytanie o ilosc dostepnych szaf
+        if(operationType.equals("cena")){ //zapytanie o cene
             // zapytanie dotyczylo tylko szaf z powodu malej ilosci czasu - w przyszlosci bedzie dynamicznie
             try {
                 //adres skryptu
@@ -393,7 +393,7 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
             } catch (IOException e) {
             }
         }
-        if(operationType.equals("nazwa_produktu")){ //zapytanie o ilosc dostepnych szaf
+        if(operationType.equals("nazwa_produktu")){ //zapytanie o nazwe produktu
             // zapytanie dotyczylo tylko szaf z powodu malej ilosci czasu - w przyszlosci bedzie dynamicznie
             try {
                 //adres skryptu
@@ -425,7 +425,7 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
             } catch (IOException e) {
             }
         }
-        if(operationType.equals("czas_montazu_produktu")){ //zapytanie o ilosc dostepnych szaf
+        if(operationType.equals("czas_montazu_produktu")){ //zapytanie o czas montazu
             // zapytanie dotyczylo tylko szaf z powodu malej ilosci czasu - w przyszlosci bedzie dynamicznie
             try {
                 //adres skryptu
@@ -457,7 +457,7 @@ public class ObslugaBazyDanych extends AsyncTask<String, Void, String> {
             } catch (IOException e) {
             }
         }
-        if(operationType.equals("wielkosc_partii_produktu")){ //zapytanie o ilosc dostepnych szaf
+        if(operationType.equals("wielkosc_partii_produktu")){ //zapytanie o wielkosc partii
             // zapytanie dotyczylo tylko szaf z powodu malej ilosci czasu - w przyszlosci bedzie dynamicznie
             try {
                 //adres skryptu
