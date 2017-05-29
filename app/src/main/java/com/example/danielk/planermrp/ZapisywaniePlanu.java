@@ -23,7 +23,7 @@ public class ZapisywaniePlanu{
         this.context = context;
     }
 
-    public static void zapisz() {
+    public static void zapisz() throws Exception{
         //utworz folder
         File dir = new File(path);
         dir.mkdirs();

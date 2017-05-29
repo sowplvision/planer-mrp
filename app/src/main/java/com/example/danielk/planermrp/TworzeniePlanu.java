@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  *
@@ -17,6 +18,7 @@ import android.widget.TextView;
  *
  */
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 public class TworzeniePlanu extends AppCompatActivity{
@@ -247,7 +249,13 @@ public class TworzeniePlanu extends AppCompatActivity{
 
         //zapisywanie utworzonej tresci do pliku w pamieci wewnetrznej/PlanerMRP/plan.csv
         ZapisywaniePlanu zapisywaniePlanu = new ZapisywaniePlanu(tresc,this);
-        zapisywaniePlanu.zapisz();
+
+        try {
+            zapisywaniePlanu.zapisz();
+        }
+        catch (Exception e){
+            Toast.makeText(this, "Brak uprawnień do zapisu w pamięci wewnętrznej urządzenia", Toast.LENGTH_LONG).show();
+        }
     }
 
     //Menu ustawien
