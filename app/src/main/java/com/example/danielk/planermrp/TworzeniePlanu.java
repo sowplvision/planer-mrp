@@ -231,12 +231,14 @@ public class TworzeniePlanu extends AppCompatActivity{
             //=IF(B17<C15;C15-B17;)
             tresc += "=IF(" + kolumnaDodatkowa + "17<" + kolumna + "15;" + kolumna + "15-" + kolumnaDodatkowa + "17;)";
             tresc += nowaKolumna;
+            kolumna = (char)(kolumna+1);
         }
         tresc += nowyWiersz + "Planowane zamowienia:" + nowaKolumna;
         kolumna = 'B';
         for(int i=0; i<10; i++){
             //=OFFSET(B20;0;3;1;1)
             tresc += "=OFFSET(" + kolumna + "20;0;" + czasMontazu + ";1;1)" + nowaKolumna;
+            kolumna = (char)(kolumna+1);
         }
         tresc += nowyWiersz + "Planowane przyjecia zamowien:" + nowaKolumna;
         kolumna = 'B';
@@ -245,7 +247,12 @@ public class TworzeniePlanu extends AppCompatActivity{
             tresc += "=IF(" + kolumna + "18<>\"\";IF(" + naStanie + ">=" + (i+1) + ";\"\";ROUNDUP(";
             tresc += kolumna + "18/" + wielkoscPartii + ")*" + wielkoscPartii + ");\"\")";
             tresc += nowaKolumna;
+            kolumna = (char)(kolumna+1);
         }
+        tresc += nowyWiersz + "Czas montazu:" + nowaKolumna + czasMontazu;
+        tresc += nowyWiersz + "Wielkosc partii:" + nowaKolumna + wielkoscPartii;
+        tresc += nowyWiersz + "Na stanie:" + nowaKolumna + naStanie;
+        tresc += nowyWiersz + "Poziom BOM:" + nowaKolumna + "0";
 
         //zapisywanie utworzonej tresci do pliku w pamieci wewnetrznej/PlanerMRP/plan.csv
         ZapisywaniePlanu zapisywaniePlanu = new ZapisywaniePlanu(tresc,this);
@@ -279,7 +286,7 @@ public class TworzeniePlanu extends AppCompatActivity{
 
     //klasa nasluchujaca zmiany tekstu w polach
     private class TextChangeListener implements TextWatcher {
-        private Integer produkcja, popyt, dostepne;
+        private Integer produkcja, popyt, dostepne, naStanie;
         private int position;
 
         //konstruktor domyslny
@@ -288,6 +295,7 @@ public class TworzeniePlanu extends AppCompatActivity{
             this.produkcja = 0;
             this.position = position;
             this.dostepne = Integer.parseInt(wartosciDostepne[0].getText().toString());
+            this.naStanie = dostepne;
         }
 
         @Override
@@ -303,6 +311,9 @@ public class TworzeniePlanu extends AppCompatActivity{
             //jezeli pozycja jest wieksza od 0(np dzien 2) ilosc dostepna pobierana jest z dnia poprzedniego
             if(position>0){
                 dostepne = Integer.parseInt(wartosciDostepne[position-1].getText().toString());
+            }
+            else  {
+                dostepne = naStanie;
             }
 
             //
