@@ -21,16 +21,16 @@ public class ZapisywaniePlanu{
     public ZapisywaniePlanu(String tresc, Context context){
         this.tresc = tresc;
         this.context = context;
-
-        //utworz folder
-        File dir = new File(path);
-        dir.mkdirs();
     }
 
     public static void zapisz() {
+        //utworz folder
+        File dir = new File(path);
+        dir.mkdirs();
+
         //utworz plik plan.csv w folderze PlanerMRP w pamieci wewnetrznej
         File plik = new File(path + "/plan.csv");
-        String[] data = tresc.split(";");
+        String[] data = tresc.split("#");
 
         //zapisywanie danych do pliku
         FileOutputStream fos = null;

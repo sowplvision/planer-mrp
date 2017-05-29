@@ -26,7 +26,7 @@ public class TworzeniePlanu extends AppCompatActivity{
     private String wartosci[] = new String[10];
     private String wprodukcji[] = new String[10];
     private String wdostepne[] = new String[10];
-    private String cena, nazwaProduktu;
+    private String cena, nazwaProduktu, czasMontazu, wielkoscPartii;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,10 +135,41 @@ public class TworzeniePlanu extends AppCompatActivity{
             }
         }).run();
 
-        //symbol wiersza i kolumny w csv
+        //pobierz czas montazu produktu
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ObslugaBazyDanych obslugaBazyDanych = new ObslugaBazyDanych(getApplicationContext());
+                try {
+                    czasMontazu = obslugaBazyDanych.execute("czas_montazu_produktu").get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).run();
+
+        //pobierz wielkosc partii produktu
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ObslugaBazyDanych obslugaBazyDanych = new ObslugaBazyDanych(getApplicationContext());
+                try {
+                    wielkoscPartii = obslugaBazyDanych.execute("wielkosc_partii_produktu").get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).run();
+
+        //symbole potrzebne do zapisu w csv (nowy wiersz,kolumna,tabelka, offsetWiersza, offsetKolumny)
         String nowyWiersz = "\n";
         String nowaKolumna = ",";
-        String nowaTabela = ";";
+        String nowaTabela = "#";
+        char kolumna;
 
         //tworzenie tekstowo tabeli GHP dla 10 dni dla produktu (obecnie jedynie dla szafy)
         String tresc = "GHP" + nowaKolumna + nazwaProduktu + nowaKolumna;
@@ -147,25 +178,72 @@ public class TworzeniePlanu extends AppCompatActivity{
         for(int i = 0; i<10; i++){
             tresc+= (i+1) + nowaKolumna;
         }
-        tresc += nowaKolumna + nowaKolumna + "Podsumowanie" + nowaKolumna + "Wartosc: [zl]";
         tresc += nowyWiersz + "Przewidywany popyt:" + nowaKolumna;
         for(int i = 0; i<10; i++){
             tresc+= wartosci[i] + nowaKolumna;
         }
-        tresc += nowaKolumna + "Popyt:" + nowaKolumna + "=SUM(B3:K3)";
-        tresc += nowaKolumna + "=E1*N3";
         tresc += nowyWiersz + "Produkcja:" + nowaKolumna;
         for(int i = 0; i<10; i++){
             tresc+= wprodukcji[i] + nowaKolumna;
         }
-        tresc += nowaKolumna + "Produkcja:" + nowaKolumna + "=SUM(B4:K4)";
-        tresc += nowaKolumna + "=E1*N4";
         tresc += nowyWiersz + "Dostepne:" + nowaKolumna;
         for(int i = 0; i<10; i++) {
             tresc += wdostepne[i] + nowaKolumna;
         }
-        tresc += nowaKolumna + "Dostepne" + nowaKolumna + "=K5";
-        tresc += nowaKolumna + "=E1*N5" + nowyWiersz;
+        tresc += nowyWiersz + nowyWiersz + nowaKolumna +"Podsumowanie" + nowaKolumna + "Wartosc: [zl]";
+        tresc += nowyWiersz + "Popyt:" + nowaKolumna + "=SUM(B3:K3)";
+        tresc += nowaKolumna + "=E1*B8";
+        tresc += nowyWiersz+ "Produkcja:" + nowaKolumna + "=SUM(B4:K4)";
+        tresc += nowaKolumna + "=E1*B9";
+        tresc += nowyWiersz + "Dostepne" + nowaKolumna + "=K5";
+        tresc += nowaKolumna + "=E1*B10" + nowyWiersz;
+
+        //utworz tabele MRP poziom 0 (Algorytm MRP dla jednej tabeli)
+        tresc += nowaTabela + "MRP" + nowaKolumna + nazwaProduktu + "(Poziom 0)";
+        tresc += nowyWiersz + "Dzien:" + nowaKolumna;
+        for(int i = 0; i<10; i++){
+            tresc += (i+1) + nowaKolumna;
+        }
+        tresc += nowyWiersz + "Calkowite zapotrzebowanie:" + nowaKolumna;
+        kolumna = 'B';
+        for(int i = 0; i<10; i++){
+            //=OFFSET(B4;0;3;1;1)
+            tresc += "=OFFSET(" + kolumna + "4;0;" + czasMontazu + ";1;1)" + nowaKolumna;
+            kolumna = (char) (kolumna + 1);
+        }
+        tresc += nowyWiersz + "Planowane przyjecia:" + nowaKolumna;
+        tresc += nowyWiersz + "Przewidywane na stanie:" + nowaKolumna;
+        tresc += "=" + naStanie + "+B16+B19-B15" + nowaKolumna;
+        kolumna = 'C';
+        for (int i=1; i<10; i++){
+            char kolumnaDodatkowa = (char)(kolumna-1);
+            //=B17+C16+C19-C15
+            tresc += "=" + kolumnaDodatkowa + "17+" + kolumna + "16+" + kolumna + "19-" + kolumna + "15" + nowaKolumna;
+            kolumna = (char) (kolumna+1);
+        }
+        tresc += nowyWiersz + "Zapotrzebowanie netto:" + nowaKolumna;
+        tresc += "=IF("+naStanie+"<B15;B15-" + naStanie + ";)" + nowaKolumna;
+        kolumna = 'C';
+        for (int i=1; i<10; i++){
+            char kolumnaDodatkowa = (char)(kolumna-1);
+            //=IF(B17<C15;C15-B17;)
+            tresc += "=IF(" + kolumnaDodatkowa + "17<" + kolumna + "15;" + kolumna + "15-" + kolumnaDodatkowa + "17;)";
+            tresc += nowaKolumna;
+        }
+        tresc += nowyWiersz + "Planowane zamowienia:" + nowaKolumna;
+        kolumna = 'B';
+        for(int i=0; i<10; i++){
+            //=OFFSET(B20;0;3;1;1)
+            tresc += "=OFFSET(" + kolumna + "20;0;" + czasMontazu + ";1;1)" + nowaKolumna;
+        }
+        tresc += nowyWiersz + "Planowane przyjecia zamowien:" + nowaKolumna;
+        kolumna = 'B';
+        for(int i=0; i<10; i++){
+            //=IF(B18<>"";IF(3>=1;"";ROUNDUP(B18/10)*10);"")
+            tresc += "=IF(" + kolumna + "18<>\"\";IF(" + naStanie + ">=" + (i+1) + ";\"\";ROUNDUP(";
+            tresc += kolumna + "18/" + wielkoscPartii + ")*" + wielkoscPartii + ");\"\")";
+            tresc += nowaKolumna;
+        }
 
         //zapisywanie utworzonej tresci do pliku w pamieci wewnetrznej/PlanerMRP/plan.csv
         ZapisywaniePlanu zapisywaniePlanu = new ZapisywaniePlanu(tresc,this);
