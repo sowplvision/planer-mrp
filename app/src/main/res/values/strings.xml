@@ -7,8 +7,7 @@
     <string name="stworz_plan">Stwórz Plan</string>
     <string name="wpis_do_bazy">Dodaj Przedmiot</string>
     <string name="informacje">O aplikacji</string>
-    <string name="powitanie">Witaj!</string>
-    <string name="ekran_glowny">Co chciałbyś zrobić:</string>
+    <string name="powitanie">Witaj! Co chciałbyś zrobić:</string>
     <string name="typ_produktu_label">Typ produktu:</string>
     <string name="opis_zastosowania_dodatkowe_informacje">Opis, zastosowania, dodatkowe informacje</string>
     <string name="czas_montazu">Czas montażu</string>

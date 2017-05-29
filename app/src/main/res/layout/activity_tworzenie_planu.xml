@@ -130,8 +130,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:layout_marginStart="35dp"
-                        android:hint="0" />
+                        android:layout_marginStart="35dp" />
                 </TableRow>
 
                 <TableRow
@@ -169,8 +168,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:layout_marginStart="35dp"
-                        android:hint="0" />
+                        android:layout_marginStart="35dp" />
                 </TableRow>
 
                 <TableRow
@@ -208,8 +206,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:layout_marginStart="35dp"
-                        android:hint="0" />
+                        android:layout_marginStart="35dp" />
                 </TableRow>
 
                 <TableRow
@@ -247,8 +244,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:layout_marginStart="35dp"
-                        android:hint="0" />
+                        android:layout_marginStart="35dp" />
                 </TableRow>
 
                 <TableRow
@@ -286,8 +282,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:layout_marginStart="35dp"
-                        android:hint="0" />
+                        android:layout_marginStart="35dp" />
                 </TableRow>
 
                 <TableRow
@@ -325,8 +320,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:layout_marginStart="35dp"
-                        android:hint="0" />
+                        android:layout_marginStart="35dp" />
                 </TableRow>
 
                 <TableRow
@@ -364,8 +358,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:layout_marginStart="35dp"
-                        android:hint="0" />
+                        android:layout_marginStart="35dp" />
                 </TableRow>
 
                 <TableRow
@@ -403,8 +396,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:layout_marginStart="35dp"
-                        android:hint="0" />
+                        android:layout_marginStart="35dp" />
                 </TableRow>
 
                 <TableRow
@@ -442,8 +434,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:layout_marginStart="35dp"
-                        android:hint="0" />
+                        android:layout_marginStart="35dp" />
                 </TableRow>
 
                 <TableRow
@@ -481,8 +472,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
-                        android:layout_marginStart="35dp"
-                        android:hint="0" />
+                        android:layout_marginStart="35dp" />
                 </TableRow>
 
 
@@ -500,7 +490,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="11dp"
         android:layout_marginRight="11dp"
-        android:backgroundTint="#9ACD32"
+        android:background="#9ACD32"
         android:onClick="stworzPlan"
         android:text="@string/stw_rz_plan" />
 

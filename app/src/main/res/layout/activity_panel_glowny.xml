@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -23,25 +23,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:layout_weight="0.07"
             android:text="@string/powitanie"
             android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/mainScreenLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:paddingLeft="10dp"
-            android:paddingStart="10dp"
-            android:text="@string/ekran_glowny"
-            android:textSize="16sp" />
 
         <Button
             android:id="@+id/stworzPlan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:backgroundTint="#9ACD32"
+            android:layout_weight="0.20"
+            android:background="#9ACD32"
             android:onClick="stworzPlan"
             android:text="@string/stworz_plan" />
 
@@ -49,8 +40,8 @@
             android:id="@+id/wpisDoBazy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:backgroundTint="#9ACD32"
+            android:layout_weight="0.20"
+            android:background="#9ACD32"
             android:onClick="wpisDoBazy"
             android:text="@string/wpis_do_bazy" />
 
@@ -58,24 +49,22 @@
             android:id="@+id/informacje"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:backgroundTint="#9ACD32"
+            android:layout_weight="0.20"
+            android:background="#9ACD32"
             android:onClick="informacje"
             android:text="@string/informacje" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/opis_przyciskow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:onClick="toastOpis"
+            android:text="@string/opis_przyciskow"
+            android:textAlignment="center" />
 
-    <Button
-        android:id="@+id/opis_przyciskow"
-        android:layout_width="194dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="33dp"
-        android:backgroundTint="@android:color/white"
-        android:elevation="0dp"
-        android:onClick="toastOpis"
-        android:text="@string/opis_przyciskow"
-        android:textAlignment="center" />
+    </LinearLayout>
 
 </RelativeLayout>
