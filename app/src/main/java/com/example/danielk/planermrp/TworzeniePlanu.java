@@ -8,23 +8,16 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import java.util.concurrent.ExecutionException;
 /**
  *
  * Klasa ktorej głownym przeznaczeniem jest tworzenie nowego planu produkcji na podstawie pobieranych
- *
- */
-
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
-/*
  * Klasa obsługująca plan i zapisująca go do pliku na urządzeniu mobilnym.
- */
+ *
+ **/
 
 public class TworzeniePlanu extends AppCompatActivity{
     private Integer naStanie;
