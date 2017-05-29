@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -112,8 +113,8 @@ public class TworzeniePlanu extends AppCompatActivity{
 
                 try {
                     cena = obslugaBazyDanych.execute("cena").get();
-                    cena = cena.replace(",",".");
-                    cena = cena.substring(2); //postgresql przechowuje kwote razem z waluta (zł 0,00)
+                    cena = cena.replace(",",""); //cena za 100szt - nie moze byc przecinkow w pliku csv
+                    cena = cena.substring(2); //postgresql przechowuje kwote razem z waluta (zł0,00)
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -175,7 +176,7 @@ public class TworzeniePlanu extends AppCompatActivity{
 
         //tworzenie tekstowo tabeli GHP dla 10 dni dla produktu (obecnie jedynie dla szafy)
         String tresc = "GHP" + nowaKolumna + nazwaProduktu + nowaKolumna;
-        tresc += nowaKolumna +"Cena za sztuke:" + nowaKolumna + cena + nowyWiersz;
+        tresc += nowaKolumna +"Cena za sztuke:" + nowaKolumna + "=" + cena + "/100" + nowyWiersz;
         tresc += "Dzien:" + nowaKolumna;
         for(int i = 0; i<10; i++){
             tresc+= (i+1) + nowaKolumna;
@@ -243,9 +244,9 @@ public class TworzeniePlanu extends AppCompatActivity{
         tresc += nowyWiersz + "Planowane przyjecia zamowien:" + nowaKolumna;
         kolumna = 'B';
         for(int i=0; i<10; i++){
-            //=IF(B18<>"";IF(3>=1;"";ROUNDUP(B18/10)*10);"")
-            tresc += "=IF(" + kolumna + "18<>\"\";IF(" + naStanie + ">=" + (i+1) + ";\"\";ROUNDUP(";
-            tresc += kolumna + "18/" + wielkoscPartii + ")*" + wielkoscPartii + ");\"\")";
+            //=IF(3>=1;"";ROUNDUP((B18/10)*10;0))
+            tresc += "=IF(" + czasMontazu + ">=" + (i+1) +";\"\";ROUNDUP((" + kolumna + "18/";
+            tresc += wielkoscPartii + ")*" + wielkoscPartii + ";0))";
             tresc += nowaKolumna;
             kolumna = (char)(kolumna+1);
         }
